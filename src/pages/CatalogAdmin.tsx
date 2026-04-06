@@ -403,7 +403,7 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
           <main className="flex-1 overflow-y-auto">
             {!selectedMake ? (
               /* Estado vacío */
-              <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+              <div className="flex flex-col items-center p-8 pt-16 text-center">
                 <div className="w-16 h-16 bg-jaecoo-elevated rounded-2xl flex items-center justify-center mb-4">
                   <Car size={28} className="text-jaecoo-muted" />
                 </div>

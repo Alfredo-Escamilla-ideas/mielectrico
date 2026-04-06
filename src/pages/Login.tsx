@@ -1,85 +1,11 @@
-import { useState, useRef, useEffect, useMemo } from 'react'
-import { Car, Zap, Loader2, Eye, EyeOff, ChevronDown } from 'lucide-react'
+import { useState, useEffect, useMemo } from 'react'
+import { Car, Zap, Loader2, Eye, EyeOff } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { EV_CATALOG } from '../data/evCatalog'
 import type { VehicleVersion } from '../data/evCatalog'
 import { apiGetCustomCatalog } from '../services/api'
 import type { CustomVehicle } from '../services/api'
-
-// ── Custom select ────────────────────────────────────────────────────────────
-
-interface CustomSelectProps {
-  value: string
-  onChange: (v: string) => void
-  options: string[]
-  placeholder: string
-  disabled?: boolean
-}
-
-function CustomSelect({ value, onChange, options, placeholder, disabled = false }: CustomSelectProps) {
-  const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    function onOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
-    }
-    document.addEventListener('mousedown', onOutside)
-    return () => document.removeEventListener('mousedown', onOutside)
-  }, [])
-
-  const base = `w-full rounded-xl border px-4 py-3 text-sm text-left flex items-center
-    justify-between transition-all duration-150`
-
-  const triggerCls = disabled
-    ? `${base} border-jaecoo-border bg-jaecoo-elevated text-jaecoo-muted opacity-40 cursor-not-allowed`
-    : open
-      ? `${base} border-jaecoo-electric ring-2 ring-jaecoo-electric/20 bg-jaecoo-elevated cursor-pointer`
-      : `${base} border-jaecoo-border bg-jaecoo-elevated hover:border-jaecoo-border-strong cursor-pointer`
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        type="button"
-        disabled={disabled}
-        onClick={() => !disabled && setOpen(o => !o)}
-        className={triggerCls}
-      >
-        <span className={value ? 'text-jaecoo-primary' : 'text-jaecoo-muted'}>
-          {value || placeholder}
-        </span>
-        <ChevronDown
-          size={15}
-          className={`text-jaecoo-muted flex-shrink-0 ml-2 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-        />
-      </button>
-
-      {open && (
-        <div className="absolute z-50 w-full mt-1.5 rounded-xl border border-jaecoo-border-strong
-          bg-jaecoo-card shadow-j-elevated overflow-hidden max-h-52 overflow-y-auto
-          animate-fade-in">
-          {options.length === 0 ? (
-            <p className="px-4 py-3 text-sm text-jaecoo-muted">Sin opciones</p>
-          ) : (
-            options.map(opt => (
-              <button
-                key={opt}
-                type="button"
-                onClick={() => { onChange(opt); setOpen(false) }}
-                className={`w-full px-4 py-2.5 text-sm text-left transition-colors
-                  ${value === opt
-                    ? 'bg-jaecoo-electric/10 text-jaecoo-electric font-medium'
-                    : 'text-jaecoo-secondary hover:bg-jaecoo-elevated hover:text-jaecoo-primary'}`}
-              >
-                {opt}
-              </button>
-            ))
-          )}
-        </div>
-      )}
-    </div>
-  )
-}
+import CustomSelect from '../components/CustomSelect'
 
 // ── Login page ───────────────────────────────────────────────────────────────
 

@@ -146,8 +146,23 @@ export async function apiGetCustomCatalog(): Promise<CustomVehicle[]> {
 export async function apiAddCustomVehicle(adminPassword: string, make: string, model: string, version: string): Promise<CustomVehicle> {
   return req('/catalog.php', { method: 'POST', body: JSON.stringify({ admin_password: adminPassword, make, model, version }) })
 }
-export async function apiDeleteCustomVehicle(adminPassword: string, id: number): Promise<void> {
+export async function apiUpdateCustomVersion(adminPassword: string, id: number, make: string, model: string, version: string): Promise<void> {
+  await req('/catalog.php', { method: 'PUT', body: JSON.stringify({ admin_password: adminPassword, action: 'update', id, make, model, version }) })
+}
+export async function apiRenameMake(adminPassword: string, oldMake: string, newMake: string): Promise<void> {
+  await req('/catalog.php', { method: 'PUT', body: JSON.stringify({ admin_password: adminPassword, action: 'rename_make', old_make: oldMake, new_make: newMake }) })
+}
+export async function apiRenameModel(adminPassword: string, make: string, oldModel: string, newModel: string): Promise<void> {
+  await req('/catalog.php', { method: 'PUT', body: JSON.stringify({ admin_password: adminPassword, action: 'rename_model', make, old_model: oldModel, new_model: newModel }) })
+}
+export async function apiDeleteCustomVersion(adminPassword: string, id: number): Promise<void> {
   await req('/catalog.php', { method: 'DELETE', body: JSON.stringify({ admin_password: adminPassword, id }) })
+}
+export async function apiDeleteCustomModel(adminPassword: string, make: string, model: string): Promise<void> {
+  await req('/catalog.php', { method: 'DELETE', body: JSON.stringify({ admin_password: adminPassword, action: 'delete_model', make, model }) })
+}
+export async function apiDeleteCustomMake(adminPassword: string, make: string): Promise<void> {
+  await req('/catalog.php', { method: 'DELETE', body: JSON.stringify({ admin_password: adminPassword, action: 'delete_make', make }) })
 }
 
 // Insurance

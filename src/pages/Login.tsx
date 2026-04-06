@@ -1,7 +1,84 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Car, Zap, Loader2, Eye, EyeOff, ChevronDown } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { EV_CATALOG } from '../data/evCatalog'
+
+// ── Custom select ────────────────────────────────────────────────────────────
+
+interface CustomSelectProps {
+  value: string
+  onChange: (v: string) => void
+  options: string[]
+  placeholder: string
+  disabled?: boolean
+}
+
+function CustomSelect({ value, onChange, options, placeholder, disabled = false }: CustomSelectProps) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function onOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', onOutside)
+    return () => document.removeEventListener('mousedown', onOutside)
+  }, [])
+
+  const base = `w-full rounded-xl border px-4 py-3 text-sm text-left flex items-center
+    justify-between transition-all duration-150`
+
+  const triggerCls = disabled
+    ? `${base} border-jaecoo-border bg-jaecoo-elevated text-jaecoo-muted opacity-40 cursor-not-allowed`
+    : open
+      ? `${base} border-jaecoo-electric ring-2 ring-jaecoo-electric/20 bg-jaecoo-elevated cursor-pointer`
+      : `${base} border-jaecoo-border bg-jaecoo-elevated hover:border-jaecoo-border-strong cursor-pointer`
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => !disabled && setOpen(o => !o)}
+        className={triggerCls}
+      >
+        <span className={value ? 'text-jaecoo-primary' : 'text-jaecoo-muted'}>
+          {value || placeholder}
+        </span>
+        <ChevronDown
+          size={15}
+          className={`text-jaecoo-muted flex-shrink-0 ml-2 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      {open && (
+        <div className="absolute z-50 w-full mt-1.5 rounded-xl border border-jaecoo-border-strong
+          bg-jaecoo-card shadow-j-elevated overflow-hidden max-h-52 overflow-y-auto
+          animate-fade-in">
+          {options.length === 0 ? (
+            <p className="px-4 py-3 text-sm text-jaecoo-muted">Sin opciones</p>
+          ) : (
+            options.map(opt => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => { onChange(opt); setOpen(false) }}
+                className={`w-full px-4 py-2.5 text-sm text-left transition-colors
+                  ${value === opt
+                    ? 'bg-jaecoo-electric/10 text-jaecoo-electric font-medium'
+                    : 'text-jaecoo-secondary hover:bg-jaecoo-elevated hover:text-jaecoo-primary'}`}
+              >
+                {opt}
+              </button>
+            ))
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Login page ───────────────────────────────────────────────────────────────
 
 export default function Login() {
   const { login, register } = useAuth()
@@ -10,6 +87,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [selectedMake, setSelectedMake] = useState('')
   const [selectedModel, setSelectedModel] = useState('')
+  const [selectedVersion, setSelectedVersion] = useState('')
   const [initialOdometer, setInitialOdometer] = useState('')
   const [initialBattery, setInitialBattery] = useState('100')
   const [initialFuel, setInitialFuel] = useState('60')
@@ -17,11 +95,20 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const models = EV_CATALOG.find(m => m.make === selectedMake)?.models ?? []
+  const makeEntry   = EV_CATALOG.find(m => m.make === selectedMake)
+  const modelEntries = makeEntry?.models ?? []
+  const modelEntry  = modelEntries.find(m => m.name === selectedModel)
+  const versions    = modelEntry?.versions ?? []
 
   const handleMakeChange = (make: string) => {
     setSelectedMake(make)
     setSelectedModel('')
+    setSelectedVersion('')
+  }
+
+  const handleModelChange = (model: string) => {
+    setSelectedModel(model)
+    setSelectedVersion('')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,16 +118,22 @@ export default function Login() {
       setError('Introduce matrícula y contraseña')
       return
     }
-    if (tab === 'register' && (!selectedMake || !selectedModel)) {
-      setError('Selecciona la marca y el modelo del vehículo')
-      return
+    if (tab === 'register') {
+      if (!selectedMake || !selectedModel) {
+        setError('Selecciona la marca y el modelo del vehículo')
+        return
+      }
+      if (versions.length > 0 && !selectedVersion) {
+        setError('Selecciona la versión del vehículo')
+        return
+      }
     }
     setLoading(true)
     try {
       if (tab === 'login') {
         await login(plate, password)
       } else {
-        const vehicleModel = `${selectedMake} ${selectedModel}`
+        const vehicleModel = [selectedMake, selectedModel, selectedVersion].filter(Boolean).join(' ')
         await register(
           plate,
           password,
@@ -60,8 +153,6 @@ export default function Login() {
   const inp = `w-full rounded-xl border border-jaecoo-border bg-jaecoo-elevated px-4 py-3 text-sm text-jaecoo-primary
     focus:outline-none focus:border-jaecoo-electric focus:ring-2 focus:ring-jaecoo-electric/20
     transition-all placeholder:text-jaecoo-muted`
-
-  const sel = `${inp} appearance-none pr-10 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed`
 
   return (
     <div className="min-h-screen bg-jaecoo-base flex items-center justify-center p-4">
@@ -142,49 +233,49 @@ export default function Login() {
             {/* Register-only fields */}
             {tab === 'register' && (
               <>
-                {/* Make selector */}
+                {/* Make */}
                 <div>
                   <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
                     Marca
                   </label>
-                  <div className="relative">
-                    <select
-                      value={selectedMake}
-                      onChange={e => handleMakeChange(e.target.value)}
-                      className={sel}
-                    >
-                      <option value="">Selecciona marca…</option>
-                      {EV_CATALOG.map(m => (
-                        <option key={m.make} value={m.make}>{m.make}</option>
-                      ))}
-                    </select>
-                    <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-3.5 text-jaecoo-muted" />
-                  </div>
+                  <CustomSelect
+                    value={selectedMake}
+                    onChange={handleMakeChange}
+                    options={EV_CATALOG.map(m => m.make)}
+                    placeholder="Selecciona marca…"
+                  />
                 </div>
 
-                {/* Model selector */}
+                {/* Model */}
                 <div>
                   <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
                     Modelo
                   </label>
-                  <div className="relative">
-                    <select
-                      value={selectedModel}
-                      onChange={e => setSelectedModel(e.target.value)}
-                      disabled={!selectedMake}
-                      className={sel}
-                    >
-                      <option value="">
-                        {selectedMake ? 'Selecciona modelo…' : 'Primero selecciona marca'}
-                      </option>
-                      {models.map(m => (
-                        <option key={m} value={m}>{m}</option>
-                      ))}
-                    </select>
-                    <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-3.5 text-jaecoo-muted" />
-                  </div>
+                  <CustomSelect
+                    value={selectedModel}
+                    onChange={handleModelChange}
+                    options={modelEntries.map(m => m.name)}
+                    placeholder={selectedMake ? 'Selecciona modelo…' : 'Primero selecciona marca'}
+                    disabled={!selectedMake}
+                  />
                 </div>
 
+                {/* Version */}
+                {selectedModel && versions.length > 0 && (
+                  <div>
+                    <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
+                      Versión
+                    </label>
+                    <CustomSelect
+                      value={selectedVersion}
+                      onChange={setSelectedVersion}
+                      options={versions}
+                      placeholder="Selecciona versión…"
+                    />
+                  </div>
+                )}
+
+                {/* Initial state */}
                 <div className="bg-jaecoo-elevated rounded-xl border border-jaecoo-border p-4 space-y-3">
                   <p className="text-xs font-semibold text-jaecoo-muted uppercase tracking-wide">
                     Estado inicial del vehículo

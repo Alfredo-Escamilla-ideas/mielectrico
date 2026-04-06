@@ -138,6 +138,12 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
   const [newModelVersion, setNewModelVersion] = useState('')
   const [addModelError, setAddModelError] = useState('')
   const [savingModel, setSavingModel] = useState(false)
+  const [addingMake, setAddingMake] = useState(false)
+  const [newMakeVal, setNewMakeVal] = useState('')
+  const [newMakeModel, setNewMakeModel] = useState('')
+  const [newMakeVersion, setNewMakeVersion] = useState('')
+  const [addMakeError, setAddMakeError] = useState('')
+  const [savingMake, setSavingMake] = useState(false)
 
   useEffect(() => {
     apiGetCustomCatalog()
@@ -251,6 +257,28 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
     }
   }
 
+  // ── Añadir nueva marca ───────────────────────────────────────────────────────
+  const handleAddMake = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setAddMakeError('')
+    if (!newMakeVal.trim() || !newMakeModel.trim() || !newMakeVersion.trim()) {
+      setAddMakeError('Todos los campos son obligatorios')
+      return
+    }
+    setSavingMake(true)
+    try {
+      const created = await apiAddCustomVehicle(adminPwd, newMakeVal.trim(), newMakeModel.trim(), newMakeVersion.trim())
+      setVehicles(v => [...v, created])
+      setSelectedMake(newMakeVal.trim())
+      setOpenModels(o => ({ ...o, [`${newMakeVal.trim()}|${newMakeModel.trim()}`]: true }))
+      setNewMakeVal(''); setNewMakeModel(''); setNewMakeVersion(''); setAddingMake(false)
+    } catch (err) {
+      setAddMakeError(err instanceof Error ? err.message : 'Error')
+    } finally {
+      setSavingMake(false)
+    }
+  }
+
   const toggleModel = (key: string) => setOpenModels(o => ({ ...o, [key]: !o[key] }))
 
   return (
@@ -295,8 +323,8 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
 
           {/* ── Sidebar de marcas ── */}
           <aside className="w-64 xl:w-72 flex-shrink-0 border-r border-jaecoo-border bg-jaecoo-card flex flex-col overflow-hidden">
-            {/* Buscador */}
-            <div className="p-3 border-b border-jaecoo-border">
+            {/* Buscador + botón nueva marca */}
+            <div className="p-3 border-b border-jaecoo-border space-y-2">
               <div className="relative">
                 <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-jaecoo-muted" />
                 <input
@@ -306,6 +334,38 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
                   className={`${inpSm} w-full pl-8`}
                 />
               </div>
+              <button type="button"
+                onClick={() => { setAddingMake(v => !v); setAddMakeError('') }}
+                className={`w-full flex items-center justify-center gap-1.5 text-xs font-medium rounded-lg px-3 py-2 transition-colors
+                  ${addingMake
+                    ? 'bg-jaecoo-electric/10 text-jaecoo-electric border border-jaecoo-electric/30'
+                    : 'border border-dashed border-jaecoo-border hover:border-jaecoo-electric/40 text-jaecoo-muted hover:text-jaecoo-electric'}`}>
+                <Plus size={12} /> Nueva marca
+              </button>
+              {/* Formulario nueva marca */}
+              {addingMake && (
+                <form onSubmit={handleAddMake} className="space-y-2 pt-1">
+                  <input autoFocus value={newMakeVal} onChange={e => setNewMakeVal(e.target.value)}
+                    placeholder="Nombre del fabricante" className={`${inpSm} w-full`} />
+                  <input value={newMakeModel} onChange={e => setNewMakeModel(e.target.value)}
+                    placeholder="Primer modelo" className={`${inpSm} w-full`} />
+                  <input value={newMakeVersion} onChange={e => setNewMakeVersion(e.target.value)}
+                    placeholder="Primera versión" className={`${inpSm} w-full`} />
+                  {addMakeError && <p className="text-xs text-jaecoo-danger">{addMakeError}</p>}
+                  <div className="flex gap-2">
+                    <button type="submit" disabled={savingMake}
+                      className="flex-1 flex items-center justify-center gap-1 bg-jaecoo-electric hover:brightness-110 disabled:opacity-50 text-jaecoo-base text-xs font-semibold rounded-lg py-2 transition-all">
+                      {savingMake ? <Loader2 size={12} className="animate-spin" /> : <Check size={12} />}
+                      Crear
+                    </button>
+                    <button type="button"
+                      onClick={() => { setAddingMake(false); setNewMakeVal(''); setNewMakeModel(''); setNewMakeVersion(''); setAddMakeError('') }}
+                      className="p-2 rounded-lg hover:bg-jaecoo-elevated text-jaecoo-muted transition-colors">
+                      <X size={13} />
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
 
             {/* Lista de marcas */}

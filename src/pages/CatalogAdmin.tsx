@@ -158,7 +158,21 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
 
   useEffect(() => {
     apiGetCustomCatalog()
-      .then(setVehicles)
+      .then(data => {
+        setVehicles(data)
+        // Expandir todas las marcas y modelos automáticamente
+        const makes: Record<string, boolean> = {}
+        const models: Record<string, boolean> = {}
+        const g = groupVehicles(data)
+        for (const make of Object.keys(g)) {
+          makes[make] = true
+          for (const model of Object.keys(g[make])) {
+            models[`${make}|${model}`] = true
+          }
+        }
+        setOpenMakes(makes)
+        setOpenModels(models)
+      })
       .catch(() => setFetchError('No se pudo cargar el catálogo'))
       .finally(() => setLoading(false))
   }, [])
@@ -198,6 +212,8 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
     try {
       const created = await apiAddCustomVehicle(adminPwd, make, model, version)
       setVehicles(v => [...v, created])
+      setOpenMakes(o => ({ ...o, [make]: true }))
+      setOpenModels(o => ({ ...o, [`${make}|${model}`]: true }))
       setFMake(''); setFNewMake(''); setFModel(''); setFNewModel(''); setFVersion('')
     } catch (err) {
       setAddError(err instanceof Error ? err.message : 'Error al añadir')
@@ -433,13 +449,13 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
                       )}
                     </button>
                     {editing !== `make:${make}` && (
-                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center gap-1">
                         <button type="button" onClick={() => { setEditing(`make:${make}`); setOpenMakes(o => ({...o, [make]: true})) }}
-                          className="p-1.5 rounded-lg hover:bg-jaecoo-elevated text-jaecoo-muted hover:text-jaecoo-secondary transition-colors">
+                          className="p-1.5 rounded-lg hover:bg-jaecoo-elevated text-jaecoo-muted hover:text-jaecoo-secondary transition-colors" title="Renombrar marca">
                           <Pencil size={13} />
                         </button>
                         <button type="button" onClick={() => handleDeleteMake(make)}
-                          className="p-1.5 rounded-lg hover:bg-jaecoo-danger/10 text-jaecoo-muted hover:text-jaecoo-danger transition-colors">
+                          className="p-1.5 rounded-lg hover:bg-jaecoo-danger/10 text-jaecoo-muted hover:text-jaecoo-danger transition-colors" title="Eliminar marca">
                           <Trash2 size={13} />
                         </button>
                       </div>
@@ -477,14 +493,14 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
                                 )}
                               </button>
                               {editing !== `model:${modelKey}` && (
-                                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="flex items-center gap-1">
                                   <button type="button"
                                     onClick={() => { setEditing(`model:${modelKey}`); setOpenModels(o => ({...o, [modelKey]: true})) }}
-                                    className="p-1 rounded-lg hover:bg-jaecoo-elevated text-jaecoo-muted hover:text-jaecoo-secondary transition-colors">
+                                    className="p-1 rounded-lg hover:bg-jaecoo-elevated text-jaecoo-muted hover:text-jaecoo-secondary transition-colors" title="Renombrar modelo">
                                     <Pencil size={12} />
                                   </button>
                                   <button type="button" onClick={() => handleDeleteModel(make, model)}
-                                    className="p-1 rounded-lg hover:bg-jaecoo-danger/10 text-jaecoo-muted hover:text-jaecoo-danger transition-colors">
+                                    className="p-1 rounded-lg hover:bg-jaecoo-danger/10 text-jaecoo-muted hover:text-jaecoo-danger transition-colors" title="Eliminar modelo">
                                     <Trash2 size={12} />
                                   </button>
                                 </div>
@@ -507,13 +523,13 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
                                     ) : (
                                       <>
                                         <span className="text-xs text-jaecoo-muted flex-1">{v.version}</span>
-                                        <div className="flex items-center gap-0.5 opacity-0 group-hover/ver:opacity-100 transition-opacity">
+                                        <div className="flex items-center gap-0.5">
                                           <button type="button" onClick={() => setEditing(`version:${v.id}`)}
-                                            className="p-1 rounded hover:bg-jaecoo-elevated text-jaecoo-muted hover:text-jaecoo-secondary transition-colors">
+                                            className="p-1 rounded hover:bg-jaecoo-elevated text-jaecoo-muted hover:text-jaecoo-secondary transition-colors" title="Editar versión">
                                             <Pencil size={11} />
                                           </button>
                                           <button type="button" onClick={() => handleDeleteVersion(v)}
-                                            className="p-1 rounded hover:bg-jaecoo-danger/10 text-jaecoo-muted hover:text-jaecoo-danger transition-colors">
+                                            className="p-1 rounded hover:bg-jaecoo-danger/10 text-jaecoo-muted hover:text-jaecoo-danger transition-colors" title="Eliminar versión">
                                             <Trash2 size={11} />
                                           </button>
                                         </div>

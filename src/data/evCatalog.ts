@@ -1,6 +1,6 @@
-// Auto-generado desde fueleconomy.gov (vehicles.csv)
-// Fuente: https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip
-// Filtro: EV + PHEV, años 2015-2026 · 49 marcas · 890 modelos
+// Catálogo EV/PHEV multimarca — fueleconomy.gov + marcas chinas (manual)
+// Fuente base: https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip
+// Filtro: EV + PHEV, años 2015-2026
 // Última actualización: 2026-04-06
 
 export interface VehicleMake {
@@ -9,6 +9,23 @@ export interface VehicleMake {
 }
 
 export const EV_CATALOG: VehicleMake[] = [
+  {
+    "make": "AION (GAC)",
+    "models": [
+      "S",
+      "V",
+      "Y",
+      "Y Plus"
+    ]
+  },
+  {
+    "make": "AITO",
+    "models": [
+      "M5",
+      "M7",
+      "M9"
+    ]
+  },
   {
     "make": "Acura",
     "models": [
@@ -84,6 +101,14 @@ export const EV_CATALOG: VehicleMake[] = [
       "e-tron Sportback",
       "e-tron Sportback quattro",
       "e-tron quattro"
+    ]
+  },
+  {
+    "make": "Avatr",
+    "models": [
+      "06",
+      "11",
+      "12"
     ]
   },
   {
@@ -184,7 +209,22 @@ export const EV_CATALOG: VehicleMake[] = [
   {
     "make": "BYD",
     "models": [
-      "e6"
+      "Atto 2",
+      "Atto 3",
+      "Atto 4",
+      "Dolphin",
+      "Han",
+      "Han L",
+      "Seal",
+      "Seal U",
+      "Seal U DM",
+      "Sealion 6",
+      "Sealion 7",
+      "Seagull",
+      "Tang",
+      "e6",
+      "Yangwang U8",
+      "Yangwang U9"
     ]
   },
   {
@@ -266,9 +306,25 @@ export const EV_CATALOG: VehicleMake[] = [
     ]
   },
   {
+    "make": "Chery",
+    "models": [
+      "Omoda 5",
+      "Omoda E5",
+      "Omoda 9",
+      "Tiggo 8 Pro e+"
+    ]
+  },
+  {
     "make": "Chrysler",
     "models": [
       "Pacifica Hybrid"
+    ]
+  },
+  {
+    "make": "Deepal",
+    "models": [
+      "L07",
+      "S7"
     ]
   },
   {
@@ -352,6 +408,24 @@ export const EV_CATALOG: VehicleMake[] = [
     ]
   },
   {
+    "make": "GWM / Haval",
+    "models": [
+      "Dargo PHEV",
+      "H6 PHEV",
+      "Jolion PHEV"
+    ]
+  },
+  {
+    "make": "Geely",
+    "models": [
+      "Galaxy E5",
+      "Galaxy E8",
+      "Galaxy L6",
+      "Geometry A",
+      "Geometry C"
+    ]
+  },
+  {
     "make": "GMC",
     "models": [
       "Hummer EV Pickup",
@@ -392,6 +466,22 @@ export const EV_CATALOG: VehicleMake[] = [
       "GV60 PERFORMANCE",
       "GV60 RWD",
       "GV60 Standard"
+    ]
+  },
+  {
+    "make": "HiPhi",
+    "models": [
+      "X",
+      "Y",
+      "Z"
+    ]
+  },
+  {
+    "make": "Hongqi",
+    "models": [
+      "E-HS9",
+      "EH7",
+      "EHS9"
     ]
   },
   {
@@ -446,6 +536,13 @@ export const EV_CATALOG: VehicleMake[] = [
       "Santa Fe Plug-in Hybrid",
       "Sonata Plug-in Hybrid",
       "Tucson Plug-in Hybrid"
+    ]
+  },
+  {
+    "make": "Jaecoo",
+    "models": [
+      "Jaecoo 7",
+      "Jaecoo 7 PHEV"
     ]
   },
   {
@@ -525,6 +622,15 @@ export const EV_CATALOG: VehicleMake[] = [
     ]
   },
   {
+    "make": "Leapmotor",
+    "models": [
+      "C10",
+      "C11",
+      "C16",
+      "T03"
+    ]
+  },
+  {
     "make": "Lexus",
     "models": [
       "NX 450h Plus AWD",
@@ -541,6 +647,16 @@ export const EV_CATALOG: VehicleMake[] = [
       "RZ 450e AWD (20 inch wheels)",
       "RZ 550e AWD",
       "TX 550h Plus AWD"
+    ]
+  },
+  {
+    "make": "Li Auto",
+    "models": [
+      "L6",
+      "L7",
+      "L8",
+      "L9",
+      "MEGA"
     ]
   },
   {
@@ -589,6 +705,26 @@ export const EV_CATALOG: VehicleMake[] = [
       "Gravity GT w/22F23R wheels (2R)",
       "Gravity GT w/22F23R wheels (3R)",
       "Gravity Touring w/20F21R wheels"
+    ]
+  },
+  {
+    "make": "Lynk & Co",
+    "models": [
+      "01",
+      "02",
+      "05",
+      "Zero"
+    ]
+  },
+  {
+    "make": "MG",
+    "models": [
+      "4 / Mulan",
+      "5 EV",
+      "Cyberster",
+      "HS PHEV",
+      "Marvel R",
+      "ZS EV"
     ]
   },
   {
@@ -689,6 +825,21 @@ export const EV_CATALOG: VehicleMake[] = [
     ]
   },
   {
+    "make": "NIO",
+    "models": [
+      "EC6",
+      "EC7",
+      "EL6",
+      "EL7",
+      "EL8",
+      "ES6",
+      "ES8",
+      "ET5",
+      "ET5 Touring",
+      "ET7"
+    ]
+  },
+  {
     "make": "Nissan",
     "models": [
       "ARIYA ENG Plus/EVO Plus e-4ORCE 87kWh",
@@ -718,6 +869,14 @@ export const EV_CATALOG: VehicleMake[] = [
       "Leaf (40 kW-hr battery pack)",
       "Leaf (62 kW-hr battery pack)",
       "Leaf SV/SL (62 kW-hr battery pack)"
+    ]
+  },
+  {
+    "make": "ORA",
+    "models": [
+      "03",
+      "07",
+      "Funky Cat"
     ]
   },
   {
@@ -1059,6 +1218,14 @@ export const EV_CATALOG: VehicleMake[] = [
     ]
   },
   {
+    "make": "Voyah",
+    "models": [
+      "Courage",
+      "Dream",
+      "Free"
+    ]
+  },
+  {
     "make": "Vinfast",
     "models": [
       "VF 6 Plus",
@@ -1133,6 +1300,33 @@ export const EV_CATALOG: VehicleMake[] = [
       "XC90 T8 AWD",
       "XC90 T8 AWD Recharge",
       "XC90 T8 AWD Recharge ext. Range"
+    ]
+  },
+  {
+    "make": "Wey",
+    "models": [
+      "Coffee 01",
+      "Macchiato"
+    ]
+  },
+  {
+    "make": "Xpeng",
+    "models": [
+      "G6",
+      "G9",
+      "MONA M03",
+      "P7",
+      "X9"
+    ]
+  },
+  {
+    "make": "Zeekr",
+    "models": [
+      "001",
+      "007",
+      "009",
+      "Mix",
+      "X"
     ]
   },
   {

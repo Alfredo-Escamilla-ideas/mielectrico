@@ -1,6 +1,6 @@
-// Catálogo EV/PHEV multimarca — fueleconomy.gov + marcas chinas (manual)
-// Fuente base: https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip
-// Filtro: EV + PHEV, años 2015-2026
+// Catálogo EV/PHEV comercializados en España (2020-2026)
+// Fuentes: km77.com, lugenergy.com, carwow.es, xataka.com, quecochemecompro.com
+// 48 marcas · 239 modelos únicos
 // Última actualización: 2026-04-06
 
 export interface VehicleMake {
@@ -10,200 +10,69 @@ export interface VehicleMake {
 
 export const EV_CATALOG: VehicleMake[] = [
   {
-    "make": "AION (GAC)",
-    "models": [
-      "S",
-      "V",
-      "Y",
-      "Y Plus"
-    ]
-  },
-  {
-    "make": "AITO",
-    "models": [
-      "M5",
-      "M7",
-      "M9"
-    ]
-  },
-  {
-    "make": "Acura",
-    "models": [
-      "ZDX AWD",
-      "ZDX AWD Type S",
-      "ZDX RWD"
-    ]
-  },
-  {
     "make": "Alfa Romeo",
     "models": [
-      "Tonale eAWD"
-    ]
-  },
-  {
-    "make": "Aston Martin",
-    "models": [
-      "Valhalla"
+      "Junior",
+      "Tonale"
     ]
   },
   {
     "make": "Audi",
     "models": [
-      "A3 e-tron",
-      "A3 e-tron ultra",
-      "A7 TFSI e quattro",
-      "A7 quattro",
+      "A3 Sportback",
+      "A3 allstreet",
+      "A5",
+      "A5 Avant",
+      "A6",
+      "A6 Avant",
+      "A8",
       "A8 L",
-      "Q4 40 e-tron",
-      "Q4 45 e-tron",
-      "Q4 50 e-tron quattro",
-      "Q4 55 e-tron quattro",
-      "Q4 Sportback 50 e-tron quattro",
-      "Q4 Sportback 55 e-tron quattro",
+      "Q3 Advanced",
+      "Q3 Black line",
+      "Q3 Business",
+      "Q3 Progressive",
+      "Q3 S line",
+      "Q3 Sportback Advanced",
+      "Q3 Sportback Black line",
+      "Q3 Sportback Business",
+      "Q3 Sportback Progressive",
+      "Q3 Sportback S line",
+      "Q4 Sportback e-tron",
       "Q4 e-tron",
-      "Q4 e-tron Sportback",
-      "Q4 e-tron Sportback quattro",
-      "Q4 e-tron quattro",
       "Q5",
-      "Q5 Plug-In Hybrid quattro",
-      "Q5 TFSI e quattro",
-      "Q6 Sportback e-tron quattro (19 inch wheels)",
-      "Q6 Sportback e-tron quattro (20 inch wheels)",
-      "Q6 e-tron (19 inch wheels)",
-      "Q6 e-tron (20 inch wheels)",
-      "Q6 e-tron quattro (19 inch wheels)",
-      "Q6 e-tron quattro (20 inch wheels)",
-      "Q6 e-tron ultra",
-      "Q8 Sportback e-tron quattro",
-      "Q8 Sportback e-tron quattro (20 inch wheels)",
-      "Q8 Sportback e-tron quattro (21 inch wheels)",
-      "Q8 Sportback e-tron ultra quattro",
-      "Q8 e-tron quattro",
-      "Q8 e-tron quattro (20 inch wheels)",
-      "Q8 e-tron quattro (21 inch wheels)",
+      "Q5 Sportback",
+      "Q6 e-tron",
+      "Q7",
+      "Q8",
+      "RS 5",
+      "RS 5 Avant",
       "RS e-tron GT",
-      "RS e-tron GT Performance",
-      "S e-tron GT (20 inch wheels)",
-      "S e-tron GT (21 inch wheels)",
-      "SQ6 Sportback e-tron",
-      "SQ6 e-tron",
-      "SQ8 Sportback e-tron (20 inch wheels)",
-      "SQ8 Sportback e-tron (21/22 inch wheels)",
-      "SQ8 e-tron (20 inch wheels)",
-      "SQ8 e-tron (21/22 inch wheels)",
-      "e-tron",
-      "e-tron GT",
-      "e-tron S (20 inch wheels)",
-      "e-tron S (20in wheels)",
-      "e-tron S (21/22 inch wheels)",
-      "e-tron S Sportback (20 inch wheels)",
-      "e-tron S Sportback (21/22 inch wheels)",
-      "e-tron Sportback",
-      "e-tron Sportback quattro",
-      "e-tron quattro"
-    ]
-  },
-  {
-    "make": "Avatr",
-    "models": [
-      "06",
-      "11",
-      "12"
+      "e-tron GT"
     ]
   },
   {
     "make": "BMW",
     "models": [
+      "225e",
       "330e",
-      "330e Sedan",
       "330e xDrive",
-      "330e xDrive Sedan",
       "530e",
-      "530e Sedan",
       "530e xDrive",
-      "530e xDrive Sedan",
-      "550e xDrive Sedan",
-      "740e xDrive",
-      "745e xDrive",
-      "750e xDrive Sedan",
-      "I8 Coupe",
-      "I8 Roadster",
-      "M5 Sedan",
+      "550e xDrive",
+      "750e xDrive",
+      "M5",
       "M5 Touring",
-      "X3 xDrive30e",
-      "X5 xDrive40e",
-      "X5 xDrive45e",
-      "X5 xDrive50e",
+      "M760e xDrive",
+      "X1",
+      "X3",
+      "X5",
       "XM",
       "XM Label",
-      "i3",
-      "i3 (94Ah)",
-      "i3 (94Ah) with Range Extender",
-      "i3 BEV",
-      "i3 BEV (60  Amp-hour battery)",
-      "i3 BEV (94 Amp-hour battery)",
-      "i3 REX",
-      "i3 REX  (94 Amp-hour battery)",
-      "i3 with Range Extender",
-      "i3s",
-      "i3s (94Ah)",
-      "i3s (94Ah) with Range Extender",
-      "i3s with Range Extender",
-      "i4 M50 Gran Coupe (19 inch wheels)",
-      "i4 M50 Gran Coupe (20 inch wheels)",
-      "i4 M60 xDrive Gran Coupe (19 inch Wheels)",
-      "i4 M60 xDrive Gran Coupe (20 inch Wheels)",
-      "i4 eDrive35 Gran Coupe (18 inch Wheels)",
-      "i4 eDrive35 Gran Coupe (19 inch Wheels)",
-      "i4 eDrive40 Gran Coupe (18 inch Wheels)",
-      "i4 eDrive40 Gran Coupe (18 inch wheels)",
-      "i4 eDrive40 Gran Coupe (19 inch Wheels)",
-      "i4 eDrive40 Gran Coupe (19 inch wheels)",
-      "i4 xDrive40 Gran Coupe (18 inch Wheels)",
-      "i4 xDrive40 Gran Coupe (19 inch Wheels)",
-      "i5 M60 xDrive Sedan (19 inch Wheels)",
-      "i5 M60 xDrive Sedan (20 inch Wheels)",
-      "i5 M60 xDrive Sedan (21 inch Wheels)",
-      "i5 eDrive40 Sedan (19 inch Wheels)",
-      "i5 eDrive40 Sedan (20 inch Wheels)",
-      "i5 eDrive40 Sedan (21 inch Wheels)",
-      "i5 xDrive40 Sedan (19 inch Wheels)",
-      "i5 xDrive40 Sedan (20 inch Wheels)",
-      "i5 xDrive40 Sedan (21 inch Wheels)",
-      "i7 M70 xDrive Sedan (20 inch Wheels)",
-      "i7 M70 xDrive Sedan (21 inch Wheels)",
-      "i7 eDrive50 Sedan (19 inch Wheels)",
-      "i7 eDrive50 Sedan (20 inch Wheels)",
-      "i7 eDrive50 Sedan (21 inch Wheels)",
-      "i7 xDrive60 Sedan (19 inch Wheels)",
-      "i7 xDrive60 Sedan (19 inch wheels)",
-      "i7 xDrive60 Sedan (20 inch Wheels)",
-      "i7 xDrive60 Sedan (20 inch wheels)",
-      "i7 xDrive60 Sedan (21 inch Wheels)",
-      "i7 xDrive60 Sedan (21 inch wheels)",
-      "i7 xDrive60 Sedan (21inch wheels)",
-      "i8",
-      "iX M60 (21 inch Wheels)",
-      "iX M60 (21 inch wheels)",
-      "iX M60 (22 inch Wheels)",
-      "iX M60 (22 inch wheels)",
-      "iX M70 (21 inch Wheels)",
-      "iX M70 (22 inch Wheels)",
-      "iX M70 (23 inch Wheels)",
-      "iX xDrive40 (20 inch Wheels)",
-      "iX xDrive40 (21 inch Wheels)",
-      "iX xDrive40 (22 inch Wheels)",
-      "iX xDrive45 (20 inch Wheels)",
-      "iX xDrive45 (21 inch Wheels)",
-      "iX xDrive45 (22 inch Wheels)",
-      "iX xDrive45 (23 inch Wheels)",
-      "iX xDrive50 (20 inch wheels)",
-      "iX xDrive50 (21 inch wheels)",
-      "iX xDrive50 (22 inch wheels)",
-      "iX xDrive60 (20 inch Wheels)",
-      "iX xDrive60 (21 inch Wheels)",
-      "iX xDrive60 (22 inch Wheels)",
-      "iX xDrive60 (23 inch Wheels)"
+      "i4",
+      "i5",
+      "i7",
+      "iX",
+      "iX3"
     ]
   },
   {
@@ -211,518 +80,193 @@ export const EV_CATALOG: VehicleMake[] = [
     "models": [
       "Atto 2",
       "Atto 3",
-      "Atto 4",
       "Dolphin",
+      "Dolphin Surf",
       "Han",
-      "Han L",
       "Seal",
+      "Seal 6",
       "Seal U",
-      "Seal U DM",
       "Sealion 6",
-      "Sealion 7",
-      "Seagull",
-      "Tang",
-      "e6",
-      "Yangwang U8",
-      "Yangwang U9"
+      "Tang"
     ]
   },
   {
     "make": "Bentley",
     "models": [
-      "Bentayga",
-      "Bentayga Hybrid",
-      "Continental GT",
-      "Continental GT Speed",
-      "Continental GTC",
-      "Continental GTC Speed",
-      "Flying Spur",
-      "Flying Spur Hybrid",
-      "Flying Spur Speed"
+      "Bentayga"
     ]
   },
   {
-    "make": "Bugatti Rimac",
+    "make": "Bestune",
     "models": [
-      "Nevera",
-      "Nevera R"
+      "Joyee 07"
     ]
   },
   {
-    "make": "Cadillac",
+    "make": "CUPRA",
     "models": [
-      "CELESTIQ",
-      "CT6 Plug-In",
-      "ELR",
-      "ELR Sport",
-      "LYRIQ",
-      "LYRIQ (11 kW Charger)",
-      "LYRIQ (19 kW Charger)",
-      "LYRIQ AWD",
-      "LYRIQ AWD (11 kW Charger)",
-      "LYRIQ AWD (19 kW Charger)",
-      "LYRIQ PAWD",
-      "LYRIQ PAWD V SERIES (11 kW Charger)",
-      "LYRIQ PAWD V SERIES (19 kW Charger)",
-      "OPTIQ AWD (11 kW Charger)",
-      "OPTIQ AWD (19 kW Charger)",
-      "OPTIQ AWD V SERIES 11 kW Charger 15 modes",
-      "OPTIQ AWD V SERIES 19 kW charger 15 modes",
-      "OPTIQ RWD (11 kW Charger)",
-      "OPTIQ RWD (19 kW Charger)",
-      "VISTIQ (11 kW Charger)",
-      "VISTIQ (19 kW Charger)"
+      "Born",
+      "Formentor",
+      "Le\u00f3n 5p",
+      "Le\u00f3n Sportstourer",
+      "Tavascan",
+      "Terramar"
     ]
   },
   {
-    "make": "Chevrolet",
+    "make": "Citro\u00ebn",
     "models": [
-      "Blazer EV AWD",
-      "Blazer EV AWD SS",
-      "Blazer EV FWD",
-      "Blazer EV FWD 22 inch tire",
-      "Blazer EV RWD",
-      "Bolt EUV",
-      "Bolt EV",
-      "Equinox EV AWD",
-      "Equinox EV AWD (11 kW Charger)",
-      "Equinox EV AWD (19 kW Charger)",
-      "Equinox EV FWD",
-      "Silverado EV",
-      "Silverado EV (11 kW Charger)",
-      "Silverado EV (19 kW Charger)",
-      "Silverado EV 14-mod battery, 11kW 15-mode charger",
-      "Silverado EV 14-mod battery, 11kW 6-mode charger",
-      "Silverado EV 20-mod battery, 11kW 15-mode charger",
-      "Silverado EV 20-mod battery, 19kW 15-mode charger",
-      "Silverado EV 20-mod battery, 19kW 6-mode charger",
-      "Silverado EV 24-mod battery, 19kW 6-mode charger",
-      "Silverado EV 2WT",
-      "Silverado EV 5WT (11 kW Charger)",
-      "Silverado EV 5WT (19 kW Charger)",
-      "Silverado EV 8WT",
-      "Spark EV",
-      "Volt"
+      "C5 Aircross",
+      "\u00eb-C3",
+      "\u00eb-C4"
     ]
   },
   {
-    "make": "Chery",
+    "make": "DFSK",
     "models": [
-      "Omoda 5",
-      "Omoda E5",
-      "Omoda 9",
-      "Tiggo 8 Pro e+"
+      "E5"
     ]
   },
   {
-    "make": "Chrysler",
+    "make": "DS",
     "models": [
-      "Pacifica Hybrid"
+      "N\u00ba4"
     ]
   },
   {
-    "make": "Deepal",
+    "make": "Ebro",
     "models": [
-      "L07",
-      "S7"
-    ]
-  },
-  {
-    "make": "Dodge",
-    "models": [
-      "Charger 2-Dr Daytona R/T AWD 18in",
-      "Charger 2-Dr Daytona R/T AWD 20in Goodyear",
-      "Charger 2-Dr Daytona R/T AWD 20in Nexen",
-      "Charger 2-Dr Daytona Scat Pack Track Pack AWD",
-      "Charger 2-Dr Daytona Scat Pack Track Pack AWD A/S",
-      "Charger Daytona R/T AWD 245/55ZR18",
-      "Charger Daytona R/T AWD 255/45R20",
-      "Charger Daytona R/T AWD 275/40R20",
-      "Charger Daytona R/T AWD 305/35ZR20",
-      "Charger Daytona Scat Pack AWD 305/35ZR20",
-      "Charger Daytona Scat Pack AWD 325/35ZR20 Rear",
-      "Charger Daytona Scat Pack AWD 325/35ZR20 Rear A/S",
-      "Hornet PHEV AWD"
-    ]
-  },
-  {
-    "make": "Ferrari",
-    "models": [
-      "296 GTB",
-      "296 GTB Spider",
-      "296 GTS",
-      "296 Speciale",
-      "296 Speciale A",
-      "SF90 Spider",
-      "SF90 Stradale",
-      "SF90 Stradale Coupe",
-      "SF90 XX Spider",
-      "SF90 XX Stradale"
+      "s700",
+      "s800",
+      "s900"
     ]
   },
   {
     "make": "Fiat",
     "models": [
-      "500e",
-      "500e All Season"
-    ]
-  },
-  {
-    "make": "Fisker",
-    "models": [
-      "Ocean Extreme One",
-      "Ocean Sport 20in",
-      "Ocean Sport 22in"
+      "500e"
     ]
   },
   {
     "make": "Ford",
     "models": [
-      "C-MAX Energi Plug-In Hybrid",
-      "C-MAX Energi Plug-in Hybrid",
-      "Escape FWD PHEV",
-      "F-150 Lightning 4WD",
-      "F-150 Lightning 4WD ER1",
-      "F-150 Lightning 4WD ER2",
-      "F-150 Lightning 4WD Extended Range",
-      "F-150 Lightning 4WD PRO ER1",
-      "F-150 Lightning 4WD SR",
-      "F-150 Lightning PRO 4WD Extended Range",
-      "F-150 Lightning Platinum 4WD",
-      "Focus Electric",
-      "Fusion Energi Plug-in Hybrid",
-      "Fusion Special Service PHEV",
-      "Fusion Special Service Vehicle PHEV",
-      "MUSTANG MACH-E CAL RT 1 ER AWD",
-      "Mustang Mach-E AWD",
-      "Mustang Mach-E AWD Extended",
-      "Mustang Mach-E CAL RT 1 ER AWD",
-      "Mustang Mach-E CAL RT 1 ER RWD",
-      "Mustang Mach-E GT",
-      "Mustang Mach-E GT Performance",
-      "Mustang Mach-E RWD",
-      "Mustang Mach-E RWD California Route 1",
-      "Mustang Mach-E RWD Extended",
-      "Mustang Mach-E RWD LFP",
-      "Mustang Mach-E Rally"
-    ]
-  },
-  {
-    "make": "GWM / Haval",
-    "models": [
-      "Dargo PHEV",
-      "H6 PHEV",
-      "Jolion PHEV"
+      "Capri",
+      "Explorer",
+      "Grand Tourneo Connect",
+      "Grand Tourneo Custom",
+      "Kuga",
+      "Mustang Mach-E",
+      "Ranger",
+      "Tourneo Connect",
+      "Tourneo Custom",
+      "Transit Custom"
     ]
   },
   {
     "make": "Geely",
     "models": [
-      "Galaxy E5",
-      "Galaxy E8",
-      "Galaxy L6",
-      "Geometry A",
-      "Geometry C"
-    ]
-  },
-  {
-    "make": "GMC",
-    "models": [
-      "Hummer EV Pickup",
-      "Hummer EV Pickup 2M20",
-      "Hummer EV Pickup 2X",
-      "Hummer EV Pickup 3X",
-      "Hummer EV Pickup MT Tires",
-      "Hummer EV Pickup MT Tires 2M20",
-      "Hummer EV Pickup MT Tires 2X",
-      "Hummer EV Pickup MT Tires 3X",
-      "Hummer EV SUV",
-      "Hummer EV SUV 2M20",
-      "Hummer EV SUV 2X",
-      "Hummer EV SUV 3X",
-      "Hummer EV SUV MT Tires",
-      "Hummer EV SUV MT Tires 2M20",
-      "Hummer EV SUV MT Tires 2X",
-      "Hummer EV SUV MT Tires 3X",
-      "Sierra EV",
-      "Sierra EV 14-mod battery, 11kW 15-mode charger",
-      "Sierra EV 20-mod battery, 11kW 15-mode charger",
-      "Sierra EV 20-mod battery, 19kW 15-mode charger"
-    ]
-  },
-  {
-    "make": "Genesis",
-    "models": [
-      "Electrified G80",
-      "Electrified GV70",
-      "Electrified GV70 AWD (19 inch Wheels)",
-      "Electrified GV70 AWD (20 inch Wheels)",
-      "GV60 ADVANCE",
-      "GV60 AWD (19 inch Wheels)",
-      "GV60 AWD Advanced (20 inch Wheels)",
-      "GV60 AWD Performance",
-      "GV60 Advanced (19 inch Wheels)",
-      "GV60 Advanced (20 inch Wheels)",
-      "GV60 PERFORMANCE",
-      "GV60 RWD",
-      "GV60 Standard"
-    ]
-  },
-  {
-    "make": "HiPhi",
-    "models": [
-      "X",
-      "Y",
-      "Z"
-    ]
-  },
-  {
-    "make": "Hongqi",
-    "models": [
-      "E-HS9",
-      "EH7",
-      "EHS9"
+      "Starray"
     ]
   },
   {
     "make": "Honda",
     "models": [
-      "Clarity EV",
-      "Clarity Plug-in Hybrid",
-      "Prologue AWD",
-      "Prologue AWD Elite",
-      "Prologue AWD Touring",
-      "Prologue FWD"
+      "CR-V",
+      "e:Ny1"
     ]
   },
   {
     "make": "Hyundai",
     "models": [
-      "Ioniq 5 AWD (19 inch Wheels)",
-      "Ioniq 5 AWD (19inch Wheels)",
-      "Ioniq 5 AWD (20 inch Wheels)",
-      "Ioniq 5 AWD (20inch Wheels)",
-      "Ioniq 5 AWD (Long Range)",
-      "Ioniq 5 AWD XRT",
-      "Ioniq 5 Long range AWD",
-      "Ioniq 5 Long range RWD",
-      "Ioniq 5 N",
-      "Ioniq 5 RWD",
-      "Ioniq 5 RWD (Long Range)",
-      "Ioniq 5 RWD (Standard Range)",
-      "Ioniq 5 Robo taxi",
-      "Ioniq 5 Standard range",
-      "Ioniq 5 Standard range RWD",
-      "Ioniq 6 AWD (18 inch Wheels)",
-      "Ioniq 6 AWD (20 inch Wheels)",
-      "Ioniq 6 Long range AWD (18 inch Wheels)",
-      "Ioniq 6 Long range AWD (20 inch Wheels)",
-      "Ioniq 6 Long range RWD (18 inch Wheels)",
-      "Ioniq 6 Long range RWD (20 inch Wheels)",
-      "Ioniq 6 RWD (18 inch Wheels)",
-      "Ioniq 6 RWD (20 inch Wheels)",
-      "Ioniq 6 Standard Range",
-      "Ioniq 6 Standard Range RWD",
-      "Ioniq 9 AWD",
-      "Ioniq 9 AWD Performance",
-      "Ioniq 9 RWD",
-      "Ioniq Electric",
-      "Ioniq Plug-in Hybrid",
-      "Kona Electric",
-      "Kona Electric (17 inch Wheels)",
-      "Kona Electric (19 inch Wheels)",
-      "Kona Electric Long Range",
-      "Kona Electric Standard Range",
-      "Santa Fe Plug-in Hybrid",
-      "Sonata Plug-in Hybrid",
-      "Tucson Plug-in Hybrid"
+      "Ioniq 5",
+      "Ioniq 6",
+      "Kona EV",
+      "Santa Fe",
+      "Tucson"
     ]
   },
   {
     "make": "Jaecoo",
     "models": [
-      "Jaecoo 7",
-      "Jaecoo 7 PHEV"
-    ]
-  },
-  {
-    "make": "Jaguar",
-    "models": [
-      "I-Pace",
-      "I-Pace EV400",
-      "I-Pace EV400 (20 inch tires)",
-      "I-Pace EV400 (22 inch tires)"
+      "7",
+      "8",
+      "J7 EV"
     ]
   },
   {
     "make": "Jeep",
     "models": [
-      "Grand Cherokee 4xe",
-      "Wagoneer S AWD (Falken tire)",
-      "Wagoneer S AWD (Pirelli tire)",
-      "Wrangler 4dr 4xe"
-    ]
-  },
-  {
-    "make": "Kandi",
-    "models": [
-      "K27"
+      "Avenger",
+      "Compass",
+      "Grand Cherokee",
+      "Wrangler"
     ]
   },
   {
     "make": "Karma",
     "models": [
-      "GS-6 (21-inch wheels)",
-      "GS-6 (22-inch wheels)",
-      "Revero",
-      "Revero GT (21-inch wheels)"
+      "Revero"
     ]
   },
   {
     "make": "Kia",
     "models": [
-      "EV6 AWD (Long Range)",
-      "EV6 AWD GT",
-      "EV6 Long Range AWD (19 inch Wheels)",
-      "EV6 Long Range AWD (19 inch tires)",
-      "EV6 Long Range AWD (20 inch Wheels)",
-      "EV6 Long Range AWD (20 inch tires)",
-      "EV6 Long Range RWD",
-      "EV6 RWD (Long Range)",
-      "EV6 RWD (Standard Range)",
-      "EV6 Standard Range RWD",
-      "EV9 GT",
-      "EV9 Long Range AWD",
-      "EV9 Long Range AWD GT-Line",
-      "EV9 Long Range RWD",
-      "EV9 Standard Range RWD",
-      "Niro Electric",
-      "Niro Plug-in Hybrid",
-      "Optima Plug-in Hybrid",
-      "Sorento Plug-in Hybrid",
-      "Soul Electric",
-      "Sportage Plug-in Hybrid"
+      "EV3",
+      "EV4",
+      "EV6",
+      "EV9",
+      "Niro",
+      "Niro EV",
+      "XCeed"
     ]
   },
   {
-    "make": "Lamborghini",
+    "make": "Koenigsegg",
     "models": [
-      "Urus SE"
+      "Gemera"
     ]
   },
   {
     "make": "Land Rover",
     "models": [
-      "New Range Rover P440 PHEV",
-      "New Range Rover Sport P440 PHEV",
-      "Range Rover P550 PHEV",
-      "Range Rover PHEV",
-      "Range Rover Sport P460 PHEV",
-      "Range Rover Sport PHEV"
+      "Defender 110",
+      "Discovery Sport",
+      "Range Rover",
+      "Range Rover Evoque",
+      "Range Rover Sport",
+      "Range Rover Velar"
     ]
   },
   {
     "make": "Leapmotor",
     "models": [
+      "B10",
       "C10",
-      "C11",
-      "C16",
       "T03"
     ]
   },
   {
     "make": "Lexus",
     "models": [
-      "NX 450h Plus AWD",
-      "RX 450h Plus AWD",
-      "RZ 300e (18 inch wheels)",
-      "RZ 300e (20 inch wheels)",
-      "RZ 350e FWD (18 inch wheels)",
-      "RZ 350e FWD (20 inch wheels)",
-      "RZ 450e AWD (18 inch Wheels)",
-      "RZ 450e AWD (18 inch wheels)",
-      "RZ 450e AWD (20 inch Wheels)",
-      "RZ 450e AWD (20 inch wheels - 235/50R20)",
-      "RZ 450e AWD (20 inch wheels - 235/50R20,255/45R20)",
-      "RZ 450e AWD (20 inch wheels)",
-      "RZ 550e AWD",
-      "TX 550h Plus AWD"
-    ]
-  },
-  {
-    "make": "Li Auto",
-    "models": [
-      "L6",
-      "L7",
-      "L8",
-      "L9",
-      "MEGA"
-    ]
-  },
-  {
-    "make": "Lincoln",
-    "models": [
-      "Aviator PHEV AWD",
-      "Corsair AWD PHEV"
-    ]
-  },
-  {
-    "make": "Lordstown",
-    "models": [
-      "Endurance"
-    ]
-  },
-  {
-    "make": "Lucid",
-    "models": [
-      "Air Dream P AWD w/19 inch wheels",
-      "Air Dream P AWD w/21 inch wheels",
-      "Air Dream R AWD w/19 inch wheels",
-      "Air Dream R AWD w/21 inch wheels",
-      "Air G Touring AWD w/19 inch wheels",
-      "Air G Touring AWD w/21 inch wheels",
-      "Air G Touring XR AWD with 19 inch wheels",
-      "Air G Touring XR AWD with 20 inch wheels",
-      "Air G Touring XR AWD with 21 inch wheels",
-      "Air G Touring XR AWD with19 inch wheels",
-      "Air GT P AWD with 21 inch wheels",
-      "Air Pure AWD with 19 inch wheels",
-      "Air Pure AWD with 20 inch wheels",
-      "Air Pure RWD with 19 inch wheels",
-      "Air Pure RWD with 20 inch wheels",
-      "Air Sapphire AWD",
-      "Air Touring AWD with 19 inch wheels",
-      "Air Touring AWD with 20 inch wheels",
-      "Air Touring AWD with 21 inch wheels",
-      "Air Touring AWD with 21inch wheels",
-      "Gravity Dream w/20F21R wheels (3R)",
-      "Gravity Dream w/21F22R wheels (3R)",
-      "Gravity Dream w/22F23R wheels (3R)",
-      "Gravity GT w/20F21R wheels (2R)",
-      "Gravity GT w/20F21R wheels (3R)",
-      "Gravity GT w/21F22R wheels (2R)",
-      "Gravity GT w/21F22R wheels (3R)",
-      "Gravity GT w/22F23R wheels (2R)",
-      "Gravity GT w/22F23R wheels (3R)",
-      "Gravity Touring w/20F21R wheels"
+      "NX 450h+",
+      "RX 450h+",
+      "RZ 450e",
+      "UX 300e"
     ]
   },
   {
     "make": "Lynk & Co",
     "models": [
       "01",
-      "02",
-      "05",
-      "Zero"
+      "08"
     ]
   },
   {
     "make": "MG",
     "models": [
-      "4 / Mulan",
-      "5 EV",
-      "Cyberster",
-      "HS PHEV",
+      "HS",
+      "MG4",
+      "MGS9",
       "Marvel R",
       "ZS EV"
     ]
@@ -730,612 +274,218 @@ export const EV_CATALOG: VehicleMake[] = [
   {
     "make": "MINI",
     "models": [
-      "Cooper SE Countryman All4",
-      "Cooper SE Hardtop 2 door",
-      "Countryman SE ALL4 (18 inch Wheels)",
-      "Countryman SE ALL4 (19 inch Wheels)"
-    ]
-  },
-  {
-    "make": "Maserati",
-    "models": [
-      "Grancabrio Folgore",
-      "Granturismo Folgore",
-      "Grecale Folgore (19 inch wheels)",
-      "Grecale Folgore (20 inch Wheels)",
-      "Grecale Folgore (21 inch Wheels)",
-      "Grecale Folgore (21 inch wheels)"
+      "Aceman",
+      "Countryman",
+      "Electric"
     ]
   },
   {
     "make": "Mazda",
     "models": [
-      "CX-70 4WD PHEV",
-      "CX-70 SC 4WD",
-      "CX-90 4WD",
-      "CX-90 4WD PHEV",
+      "CX-60",
+      "CX-80",
       "MX-30"
     ]
   },
   {
-    "make": "McLaren Automotive",
+    "make": "McLaren",
     "models": [
-      "Artura",
-      "P1"
+      "Artura"
     ]
   },
   {
     "make": "Mercedes-Benz",
     "models": [
-      "AMG C63 S E Performance",
-      "AMG E53 Hybrid 4matic Plus",
-      "AMG E53 Hybrid 4matic Plus (station wagon)",
-      "AMG EQE 4matic Plus",
-      "AMG EQE 4matic Plus (SUV)",
-      "AMG EQS 4matic Plus",
-      "AMG GLC63 S E Performance",
-      "AMG GLC63 S E Performance (coupe)",
-      "AMG GT 63 S E Performance",
-      "AMG GT 63 S E Performance (coupe)",
-      "AMG S63 E Performance",
-      "AMG SL63 S E Performance",
-      "B-Class Electric Drive",
-      "B250e",
-      "C350e",
-      "CLA250 Plus with EQ Tech",
-      "CLA250 Plus with EQ Tech (R22)",
-      "CLA350 4matic with EQ Tech",
-      "EQB 250 Plus",
-      "EQB 300 4matic",
-      "EQB 350 4matic",
-      "EQE 320 4matic",
-      "EQE 320 4matic (SUV)",
-      "EQE 320 Plus",
-      "EQE 320 Plus (SUV)",
-      "EQE 350 4matic",
-      "EQE 350 4matic (SUV)",
-      "EQE 350 Plus",
-      "EQE 350 Plus (SUV)",
-      "EQE 500 4matic",
-      "EQE 500 4matic (SUV)",
-      "EQS 400 4matic (SUV)",
-      "EQS 450 4matic",
-      "EQS 450 4matic (SUV)",
-      "EQS 450 Plus",
-      "EQS 450 Plus (SUV)",
-      "EQS 550 4matic (SUV)",
-      "EQS 580 4matic",
-      "EQS 580 4matic (SUV)",
-      "EQS 680 4matic Maybach (SUV)",
-      "G 580 with EQ Technology",
-      "GLC350e 4matic",
-      "GLC350e 4matic with EQ Hybrid Tech",
-      "GLE450e 4matic",
-      "GLE550e 4matic",
-      "S550e",
-      "S560e",
-      "S580e 4matic"
+      "A 250 e",
+      "AMG C 63 S",
+      "AMG E 53 Hybrid",
+      "AMG GLC 63 S",
+      "AMG GLE 53 Hybrid",
+      "AMG GT 4 Puertas",
+      "AMG GT 63 S",
+      "AMG SL 63 S",
+      "B 250 e",
+      "C 300 de",
+      "C 300 e",
+      "CLA",
+      "CLE 300 e",
+      "E 300 de",
+      "E 300 e",
+      "EQA",
+      "EQB",
+      "EQE",
+      "EQS",
+      "GLA 250 e",
+      "GLC 300 de",
+      "GLC 300 e",
+      "GLE 350 de",
+      "GLE 400 e",
+      "S 450 e",
+      "S 580 e"
     ]
   },
   {
     "make": "Mitsubishi",
     "models": [
-      "Outlander PHEV",
-      "i-MiEV"
-    ]
-  },
-  {
-    "make": "NIO",
-    "models": [
-      "EC6",
-      "EC7",
-      "EL6",
-      "EL7",
-      "EL8",
-      "ES6",
-      "ES8",
-      "ET5",
-      "ET5 Touring",
-      "ET7"
+      "Eclipse Cross",
+      "Outlander"
     ]
   },
   {
     "make": "Nissan",
     "models": [
-      "ARIYA ENG Plus/EVO Plus e-4ORCE 87kWh",
-      "ARIYA ENGAGE FWD 63kWh",
-      "ARIYA ENGAGE e-4ORCE 63kWh",
-      "ARIYA ENGAGE+/EVOLVE+ e-4ORCE 87kWh",
-      "ARIYA EVO Plus/EMP Plus/PRM FWD 87kWh",
-      "ARIYA EVOLVE+ FWD 87kWh",
-      "ARIYA EVOLVE+/EMPOWER+ FWD 87kWh",
-      "ARIYA FWD 63kWh",
-      "ARIYA FWD 87kWh",
-      "ARIYA PLAT Plus e-4ORCE 87kWh 19",
-      "ARIYA PLAT Plus e-4ORCE 87kWh 20",
-      "ARIYA PLATINUM+ e-4ORCE 87kWh 19in. Wheels",
-      "ARIYA PLATINUM+ e-4ORCE 87kWh 20in. Wheels",
-      "ARIYA VENTURE Plus FWD 87kWh",
-      "ARIYA e-4ORCE 63kWh",
-      "ARIYA e-4ORCE 87kWh",
-      "LEAF",
-      "LEAF 75kWh (18 inch alloy Wheels)",
-      "LEAF 75kWh (18 inch steel Wheels)",
-      "LEAF 75kWh (19 inch Wheels)",
-      "LEAF SV",
-      "Leaf",
-      "Leaf (24 kW-hr battery pack)",
-      "Leaf (30 kW-hr battery pack)",
-      "Leaf (40 kW-hr battery pack)",
-      "Leaf (62 kW-hr battery pack)",
-      "Leaf SV/SL (62 kW-hr battery pack)"
+      "Ariya",
+      "Leaf"
     ]
   },
   {
-    "make": "ORA",
+    "make": "Omoda",
     "models": [
-      "03",
-      "07",
-      "Funky Cat"
+      "7",
+      "9",
+      "E5"
+    ]
+  },
+  {
+    "make": "Opel",
+    "models": [
+      "Astra",
+      "Astra Electric",
+      "Astra Sports Tourer",
+      "Corsa Electric",
+      "Grandland",
+      "Mokka Electric"
+    ]
+  },
+  {
+    "make": "Peugeot",
+    "models": [
+      "3008",
+      "308 5p",
+      "308 SW",
+      "408",
+      "5008",
+      "e-2008",
+      "e-208"
     ]
   },
   {
     "make": "Polestar",
     "models": [
-      "1",
       "2",
-      "2 BST edition",
-      "2 Dual Motor",
-      "2 Dual Motor (19 Inch Wheels)",
-      "2 Dual Motor (20 Inch Wheels)",
-      "2 Dual Motor Perf Pack",
-      "2 Dual Motor Performance Pack",
-      "2 Single Motor",
-      "2 Single Motor (19 Inch Wheels)",
-      "2 Single Motor (20 Inch Wheels)",
-      "3 Long Range Dual Motor (20 Inch Wheels)",
-      "3 Long Range Dual Motor (21 Inch Wheels)",
-      "3 Long Range Dual Motor (22 Inch Wheels)",
-      "3 Long Range Dual Motor Performance Pack",
-      "3 Long Range Single Motor (20 Inch Wheels)",
-      "3 Long Range Single Motor (21 Inch Wheels)",
-      "3 Long Range Single Motor (22 Inch Wheels)",
-      "4 Long Range Dual Motor",
-      "4 Long Range Dual Motor Performance",
-      "4 Long Range Single Motor"
+      "3"
     ]
   },
   {
     "make": "Porsche",
     "models": [
-      "918 Spyder",
-      "Cayenne S E-Hybrid",
-      "Cayenne S E-Hybrid Coupe",
-      "Cayenne S e-Hybrid",
-      "Cayenne Turbo E-Hybrid",
-      "Cayenne Turbo E-Hybrid Coupe",
-      "Cayenne Turbo S e-Hybrid",
-      "Cayenne Turbo S e-Hybrid Coupe",
-      "Cayenne Turbo S/Coupe E-Hybrid",
-      "Cayenne e-Hybrid",
-      "Cayenne e-Hybrid Coupe",
-      "Cayenne/Coupe E-Hybrid",
-      "Macan 4 Electric",
-      "Macan 4S Electric",
-      "Macan Electric",
-      "Macan GTS Electric",
-      "Macan Turbo Electric",
-      "Panamera 4 E-Hybrid/Exec/ST",
-      "Panamera 4 e-Hybrid",
-      "Panamera 4 e-Hybrid Executive",
-      "Panamera 4 e-Hybrid ST",
-      "Panamera 4S E-Hybrid",
-      "Panamera 4S E-Hybrid/Exec/ST",
-      "Panamera 4S e-Hybrid",
-      "Panamera 4S e-Hybrid Executive",
-      "Panamera 4S e-Hybrid ST",
-      "Panamera S E-Hybrid",
-      "Panamera Turbo S E-Hybrid/Exec/ST",
-      "Panamera Turbo S e-Hybrid",
-      "Panamera Turbo S e-Hybrid Executive",
-      "Panamera Turbo S e-Hybrid ST",
-      "Taycan 4 Cross Turismo",
-      "Taycan 4 Perf Battery Plus",
-      "Taycan 4S Cross Turismo",
-      "Taycan 4S Perf Battery",
-      "Taycan 4S Perf Battery Plus",
-      "Taycan 4S Perf Battery Plus 19 inch Wheels",
-      "Taycan 4S Perf Battery Plus 19in All-Season (M+S)",
-      "Taycan 4S Performance Battery",
-      "Taycan 4S Performance Battery Plus",
-      "Taycan GTS",
-      "Taycan GTS ST",
-      "Taycan GTS Sport Turismo",
-      "Taycan Perf Battery",
-      "Taycan Perf Battery Plus",
-      "Taycan Performance Battery",
-      "Taycan Performance Battery Plus",
-      "Taycan Turbo",
-      "Taycan Turbo 21in Aero-Design wheel (285/35)",
-      "Taycan Turbo Cross Turismo",
-      "Taycan Turbo GT",
-      "Taycan Turbo GT with Weissach Package",
-      "Taycan Turbo S",
-      "Taycan Turbo S 21in Aero-Design wheel (285/35)",
-      "Taycan Turbo S Cross Turismo"
+      "Cayenne",
+      "Cayenne S",
+      "Cayenne Turbo",
+      "Panamera",
+      "Panamera Turbo",
+      "Panamera Turbo S"
     ]
   },
   {
-    "make": "Rivian",
+    "make": "Renault",
     "models": [
-      "R1S",
-      "R1S (20 inch wheels)",
-      "R1S (21 inch wheels)",
-      "R1S (22 inch wheels)",
-      "R1S 20 inch All-Terrain",
-      "R1S 20 inch All-Terrain Dual Large",
-      "R1S 20 inch All-Terrain Performance Dual Large",
-      "R1S 21 inch Dual Large",
-      "R1S 21 inch Performance Dual Large",
-      "R1S 22 inch Dual Large",
-      "R1S 22 inch Performance Dual Large",
-      "R1S AT Performance Dual Standard Plus (20in)",
-      "R1S All-Terrain Dual Large (20in)",
-      "R1S All-Terrain Dual Large Plus (20in)",
-      "R1S All-Terrain Dual Max (20in)",
-      "R1S All-Terrain Dual Standard Plus (20in)",
-      "R1S All-Terrain Performance  Dual Max (20in)",
-      "R1S All-Terrain Performance Dual Large (20in)",
-      "R1S All-Terrain Performance Dual Large Plus (20in)",
-      "R1S All-Terrain Performance Dual Max (20in)",
-      "R1S All-Terrain Quad Large (20 inch)",
-      "R1S All-Terrain Tri Max (20in)",
-      "R1S Dual Large (20in)",
-      "R1S Dual Large (21in)",
-      "R1S Dual Large (22in)",
-      "R1S Dual Large Plus (20in)",
-      "R1S Dual Large Plus (22in)",
-      "R1S Dual Max (20in)",
-      "R1S Dual Max (21in)",
-      "R1S Dual Max (22in)",
-      "R1S Dual Standard (20in)",
-      "R1S Dual Standard (21in)",
-      "R1S Dual Standard (22in)",
-      "R1S Dual Standard Plus (21in)",
-      "R1S Dual Standard Plus (22in)",
-      "R1S Performance Dual Large (20in)",
-      "R1S Performance Dual Large (21in)",
-      "R1S Performance Dual Large (22in)",
-      "R1S Performance Dual Large Plus (20in)",
-      "R1S Performance Dual Large Plus (22in)",
-      "R1S Performance Dual Max (20in)",
-      "R1S Performance Dual Max (21in)",
-      "R1S Performance Dual Max (22in)",
-      "R1S Performance Dual Standard (22in)",
-      "R1S Performance Dual Standard Plus (21in)",
-      "R1S Quad Large (20in)",
-      "R1S Quad Large (21in)",
-      "R1S Quad Large (22in)",
-      "R1S Quad Max (20in AT)",
-      "R1S Quad Max (22in UHP)",
-      "R1S Quad Max (22in)",
-      "R1S Tri Max (22in)",
-      "R1T",
-      "R1T (20 inch wheels)",
-      "R1T (21 inch wheels)",
-      "R1T (22 inch wheels)",
-      "R1T 21 inch Dual Large",
-      "R1T 21 inch Performance Dual Large",
-      "R1T 22 inch Dual Large",
-      "R1T 22 inch Performance Dual Large",
-      "R1T AT Performance Dual Standard Plus (20in)",
-      "R1T All-Terrain Dual Large (20in)",
-      "R1T All-Terrain Dual Large Plus (20in)",
-      "R1T All-Terrain Dual Max (20in)",
-      "R1T All-Terrain Dual Standard Plus (20in)",
-      "R1T All-Terrain Performance Dual Large (20in)",
-      "R1T All-Terrain Performance Dual Large Plus (20in)",
-      "R1T All-Terrain Performance Dual Max (20in)",
-      "R1T All-Terrain Quad Large (20in)",
-      "R1T All-Terrain Tri Max (20in)",
-      "R1T Dual Large (20in)",
-      "R1T Dual Large (21in)",
-      "R1T Dual Large (22in)",
-      "R1T Dual Large Plus (20in)",
-      "R1T Dual Large Plus (22in)",
-      "R1T Dual Max (20in)",
-      "R1T Dual Max (21in)",
-      "R1T Dual Max (22in)",
-      "R1T Dual Standard (20in)",
-      "R1T Dual Standard (21in)",
-      "R1T Dual Standard (22in)",
-      "R1T Dual Standard Plus (21in)",
-      "R1T Dual Standard Plus (22in)",
-      "R1T Performance Dual Large (20in)",
-      "R1T Performance Dual Large (21in)",
-      "R1T Performance Dual Large (22in)",
-      "R1T Performance Dual Large Plus (20in)",
-      "R1T Performance Dual Large Plus (22in)",
-      "R1T Performance Dual Max (20in)",
-      "R1T Performance Dual Max (21in)",
-      "R1T Performance Dual Max (22in)",
-      "R1T Performance Dual Standard Plus (21in)",
-      "R1T Performance Dual Standard Plus (22in)",
-      "R1T Quad Large (20in)",
-      "R1T Quad Large (21in)",
-      "R1T Quad Large (22in)",
-      "R1T Quad Max (20in AT)",
-      "R1T Quad Max (22in UHP)",
-      "R1T Quad Max (22in)",
-      "R1T Tri Max (22in)"
+      "5 E-Tech",
+      "Megane E-Tech",
+      "Rafale",
+      "Scenic E-Tech",
+      "Zoe"
     ]
   },
   {
-    "make": "Rolls-Royce",
+    "make": "SEAT",
     "models": [
-      "Spectre (22 inch Wheels)",
-      "Spectre (22 inch wheels)",
-      "Spectre (23 inch Wheels)",
-      "Spectre (23 inch wheels)",
-      "Spectre Black Badge (22 inch Wheels)",
-      "Spectre Black Badge (22 inch wheels)",
-      "Spectre Black Badge (23 inch Wheels)",
-      "Spectre Black Badge (23 inch wheels)"
+      "Le\u00f3n",
+      "Le\u00f3n Sportstourer",
+      "el-Born"
+    ]
+  },
+  {
+    "make": "Santana",
+    "models": [
+      "400"
+    ]
+  },
+  {
+    "make": "Skoda",
+    "models": [
+      "Enyaq",
+      "Kodiaq",
+      "Superb",
+      "Superb Combi"
     ]
   },
   {
     "make": "Subaru",
     "models": [
-      "Crosstrek Hybrid AWD",
-      "Solterra 20 AWD",
-      "Solterra AWD",
-      "Solterra Limited/Touring AWD",
-      "Trailseeker 20 inch AWD",
-      "Trailseeker AWD",
-      "Uncharted",
-      "Uncharted 20 inch AWD",
-      "Uncharted AWD"
+      "Solterra"
+    ]
+  },
+  {
+    "make": "Suzuki",
+    "models": [
+      "Across"
     ]
   },
   {
     "make": "Tesla",
     "models": [
-      "Cybertruck AWD",
-      "Cybertruck Long Range",
-      "Cybertruck Long Range (20in Cyber wheels)",
-      "Model 3 Long Range",
-      "Model 3 Long Range  AWD",
-      "Model 3 Long Range  AWD Performance",
-      "Model 3 Long Range AWD",
-      "Model 3 Long Range AWD Performance",
-      "Model 3 Long Range AWD-E",
-      "Model 3 Long Range Performance AWD (18in)",
-      "Model 3 Long Range Performance AWD (19in)",
-      "Model 3 Long Range Performance AWD (20in)",
-      "Model 3 Long Range RWD",
-      "Model 3 Long Range RWD-I (19in wheels)",
-      "Model 3 Mid Range",
-      "Model 3 Performance",
-      "Model 3 Performance AWD",
-      "Model 3 Premium AWD",
-      "Model 3 Premium RWD",
-      "Model 3 RWD",
-      "Model 3 Standard RWD",
-      "Model 3 Standard Range",
-      "Model 3 Standard Range Plus",
-      "Model 3 Standard Range Plus RWD",
+      "Model 3",
       "Model S",
-      "Model S (60 kW-hr battery pack)",
-      "Model S (70 kW-hr battery pack)",
-      "Model S (75 kW-hr battery pack)",
-      "Model S (85 kW-hr battery pack)",
-      "Model S (90 kW-hr battery pack)",
-      "Model S 100D",
-      "Model S 75D",
-      "Model S 75kWh",
-      "Model S AWD - 100D",
-      "Model S AWD - 60D",
-      "Model S AWD - 70D",
-      "Model S AWD - 75D",
-      "Model S AWD - 85D",
-      "Model S AWD - 90D",
-      "Model S AWD - P100D",
-      "Model S AWD - P85D",
-      "Model S AWD - P90D",
-      "Model S Long Range",
-      "Model S Long Range Plus",
-      "Model S P100D",
-      "Model S Performance (19in Wheels)",
-      "Model S Performance (21in Wheels)",
-      "Model S Plaid",
-      "Model S Plaid (19 inch wheels)",
-      "Model S Plaid (19in wheels)",
-      "Model S Plaid (21 inch wheels)",
-      "Model S Plaid (21in wheels)",
-      "Model S Plaid (21inch wheels)",
-      "Model S Standard Range",
       "Model X",
-      "Model X 100D",
-      "Model X 75D",
-      "Model X AWD - 100D",
-      "Model X AWD - 60D",
-      "Model X AWD - 75D",
-      "Model X AWD - 90D",
-      "Model X AWD - P100D",
-      "Model X AWD - P90D",
-      "Model X Long Range",
-      "Model X Long Range Plus",
-      "Model X P100D",
-      "Model X Performance (20in Wheels)",
-      "Model X Performance (22in Wheels)",
-      "Model X Plaid",
-      "Model X Plaid (20 inch wheels)",
-      "Model X Plaid (20in wheels)",
-      "Model X Plaid (22 inch wheels)",
-      "Model X Plaid (22in wheels)",
-      "Model X Standard Range",
-      "Model Y AWD",
-      "Model Y Long Range AWD",
-      "Model Y Long Range AWD-I",
-      "Model Y Long Range RWD",
-      "Model Y Performance AWD",
-      "Model Y Performance AWD (21in Wheels)",
-      "Model Y RWD",
-      "Model Y Standard AWD",
-      "Model Y Standard RWD (18in Wheels)",
-      "Model Y Standard RWD (19in Wheels)",
-      "Model Y Standard Range RWD"
+      "Model Y"
     ]
   },
   {
     "make": "Toyota",
     "models": [
-      "C-HR AWD 18inch",
-      "C-HR AWD 20inch",
-      "Prius PHEV",
-      "Prius PHEV SE",
-      "Prius Plug-in Hybrid",
-      "Prius Prime",
-      "Prius Prime SE",
-      "RAV4 PHEV AWD",
-      "RAV4 Prime 4WD",
-      "bZ (energy capacity 191 Ah)",
-      "bZ (energy capacity 200 Ah)",
-      "bZ AWD",
-      "bZ AWD LIMITED",
-      "bZ LIMITED (energy capacity 191 Ah)",
-      "bZ LIMITED (energy capacity 200 Ah)",
-      "bZ Woodland AWD 235/60R18",
-      "bZ Woodland AWD 235/65R18",
-      "bZ4X",
-      "bZ4X AWD",
-      "bZ4X AWD (18inch Wheels)",
-      "bZ4X AWD (20inch Wheels)",
-      "bZ4X LIMITED",
-      "bZ4X LIMITED AWD",
-      "bZ4X Limited",
-      "bZ4X Limited AWD"
-    ]
-  },
-  {
-    "make": "Voyah",
-    "models": [
-      "Courage",
-      "Dream",
-      "Free"
-    ]
-  },
-  {
-    "make": "Vinfast",
-    "models": [
-      "VF 6 Plus",
-      "VF 7 Plus",
-      "VF 8 Eco",
-      "VF 8 Plus",
-      "VF 9 Eco",
-      "VF 9 Plus"
+      "C-HR",
+      "RAV4",
+      "bZ4X"
     ]
   },
   {
     "make": "Volkswagen",
     "models": [
-      "ID. Buzz",
-      "ID. Buzz 4motion",
+      "Caddy",
+      "Caddy Maxi",
+      "California",
+      "Caravelle",
+      "Golf",
+      "ID.3",
       "ID.4",
-      "ID.4 1st",
-      "ID.4 AWD",
-      "ID.4 AWD Pro",
-      "ID.4 AWD Pro S",
-      "ID.4 Pro",
-      "ID.4 Pro S",
-      "ID.4 S",
-      "e-Golf"
+      "ID.5",
+      "ID.7",
+      "Multivan",
+      "Passat Variant",
+      "Tayron",
+      "Tiguan",
+      "Touareg"
     ]
   },
   {
     "make": "Volvo",
     "models": [
-      "C40 Recharge",
-      "C40 Recharge twin",
       "EC40",
-      "EC40 Twin",
-      "EX30 Cross Country (18 Inch Wheels)",
-      "EX30 Cross Country (19 Inch Wheels)",
-      "EX30 Single Motor extended range (18 Inch Wheels)",
-      "EX30 Single Motor extended range (19/20 Inch Wheels)",
-      "EX30 Single motor extended range",
-      "EX30 Twin Performance",
-      "EX30 Twin Performance (19 Inch Wheels)",
-      "EX30 Twin Performance (20 Inch Wheels)",
+      "EX30",
       "EX40",
-      "EX40 Twin",
       "EX90",
-      "EX90 (21 Inch Wheels)",
-      "EX90 Twin Motor",
-      "EX90 Twin Motor (20 and 22 Inch Wheels)",
-      "EX90 Twin Motor (21 Inch Wheels)",
-      "EX90 Twin Motor Performance",
-      "EX90 Twin Motor Performance (20 and 22 Inch Wheels)",
-      "EX90 Twin Motor Performance (21 Inch Wheels)",
-      "S60 AWD PHEV",
-      "S60 T8 AWD",
-      "S60 T8 AWD Recharge",
-      "S60 T8 AWD Recharge ext. Range",
-      "S90 AWD PHEV",
-      "S90 T8 AWD",
-      "S90 T8 AWD Recharge",
-      "S90 T8 AWD Recharge ext. Range",
-      "V60 AWD PHEV",
-      "V60 T8 AWD",
-      "V60 T8 AWD Recharge",
-      "V60 T8 AWD Recharge ext. Range",
-      "XC40 AWD BEV",
-      "XC40 Recharge",
-      "XC40 Recharge twin",
-      "XC60 AWD PHEV",
-      "XC60 T8 AWD",
-      "XC60 T8 AWD Recharge",
-      "XC60 T8 AWD Recharge ext. Range",
-      "XC90 AWD PHEV",
-      "XC90 T8 AWD",
-      "XC90 T8 AWD Recharge",
-      "XC90 T8 AWD Recharge ext. Range"
-    ]
-  },
-  {
-    "make": "Wey",
-    "models": [
-      "Coffee 01",
-      "Macchiato"
-    ]
-  },
-  {
-    "make": "Xpeng",
-    "models": [
-      "G6",
-      "G9",
-      "MONA M03",
-      "P7",
-      "X9"
-    ]
-  },
-  {
-    "make": "Zeekr",
-    "models": [
-      "001",
-      "007",
-      "009",
-      "Mix",
-      "X"
+      "V60",
+      "V90",
+      "XC60",
+      "XC90"
     ]
   },
   {
     "make": "smart",
     "models": [
-      "EQ fortwo (convertible)",
-      "EQ fortwo (coupe)",
-      "fortwo electric drive convertible",
-      "fortwo electric drive coupe"
+      "#1",
+      "#3"
     ]
   }
 ]

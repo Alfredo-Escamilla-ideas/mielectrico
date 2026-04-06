@@ -1,7 +1,10 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { Car, Zap, Loader2, Eye, EyeOff, ChevronDown } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { EV_CATALOG } from '../data/evCatalog'
+import type { VehicleVersion } from '../data/evCatalog'
+import { apiGetCustomCatalog } from '../services/api'
+import type { CustomVehicle } from '../services/api'
 
 // ── Custom select ────────────────────────────────────────────────────────────
 
@@ -94,8 +97,43 @@ export default function Login() {
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [customVehicles, setCustomVehicles] = useState<CustomVehicle[]>([])
 
-  const makeEntry   = EV_CATALOG.find(m => m.make === selectedMake)
+  // Cargar vehículos custom cuando abre el tab de registro
+  useEffect(() => {
+    if (tab === 'register') {
+      apiGetCustomCatalog().then(setCustomVehicles).catch(() => {})
+    }
+  }, [tab])
+
+  // Catálogo base + custom mezclados
+  const catalog = useMemo(() => {
+    const merged = EV_CATALOG.map(m => ({
+      make: m.make,
+      models: m.models.map(mod => ({ name: mod.name, versions: [...mod.versions] })) as VehicleVersion[],
+    }))
+    for (const cv of customVehicles) {
+      let makeEntry = merged.find(m => m.make === cv.make)
+      if (!makeEntry) {
+        makeEntry = { make: cv.make, models: [] }
+        merged.push(makeEntry)
+        merged.sort((a, b) => a.make.localeCompare(b.make))
+      }
+      let modelEntry = makeEntry.models.find(m => m.name === cv.model)
+      if (!modelEntry) {
+        modelEntry = { name: cv.model, versions: [] }
+        makeEntry.models.push(modelEntry)
+        makeEntry.models.sort((a, b) => a.name.localeCompare(b.name))
+      }
+      if (!modelEntry.versions.includes(cv.version)) {
+        modelEntry.versions.push(cv.version)
+        modelEntry.versions.sort()
+      }
+    }
+    return merged
+  }, [customVehicles])
+
+  const makeEntry   = catalog.find(m => m.make === selectedMake)
   const modelEntries = makeEntry?.models ?? []
   const modelEntry  = modelEntries.find(m => m.name === selectedModel)
   const versions    = modelEntry?.versions ?? []
@@ -241,7 +279,7 @@ export default function Login() {
                   <CustomSelect
                     value={selectedMake}
                     onChange={handleMakeChange}
-                    options={EV_CATALOG.map(m => m.make)}
+                    options={catalog.map(m => m.make)}
                     placeholder="Selecciona marca…"
                   />
                 </div>

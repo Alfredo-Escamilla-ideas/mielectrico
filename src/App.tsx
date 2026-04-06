@@ -12,16 +12,16 @@ import Settings from './pages/Settings'
 import Tires from './pages/Tires'
 import InsurancePage from './pages/Insurance'
 import Garage from './pages/Garage'
+import CatalogAdmin from './pages/CatalogAdmin'
 
 function AppRoutes() {
   const { isAuthenticated } = useAuth()
 
-  if (!isAuthenticated) return <Login />
-
   return (
-    <DataProvider>
-      <Routes>
-        <Route element={<Layout />}>
+    <Routes>
+      <Route path="admin" element={<CatalogAdmin />} />
+      {isAuthenticated ? (
+        <Route element={<DataProvider><Layout /></DataProvider>}>
           <Route index element={<Dashboard />} />
           <Route path="recargas" element={<ElectricCharges />} />
           <Route path="repostajes" element={<FuelRefuels />} />
@@ -31,8 +31,10 @@ function AppRoutes() {
           <Route path="seguro" element={<InsurancePage />} />
           <Route path="configuracion" element={<Settings />} />
         </Route>
-      </Routes>
-    </DataProvider>
+      ) : (
+        <Route path="*" element={<Login />} />
+      )}
+    </Routes>
   )
 }
 

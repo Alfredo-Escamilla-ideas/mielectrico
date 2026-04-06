@@ -137,6 +137,19 @@ export async function apiAddMaintenance(s: MaintenanceService): Promise<void> { 
 export async function apiUpdateMaintenance(s: MaintenanceService): Promise<void> { await req(`/maintenance.php?id=${s.id}`, { method: 'PUT', body: JSON.stringify(s) }) }
 export async function apiDeleteMaintenance(id: string): Promise<void> { await req(`/maintenance.php?id=${id}`, { method: 'DELETE' }) }
 
+// Custom catalog
+export interface CustomVehicle { id: number; make: string; model: string; version: string }
+
+export async function apiGetCustomCatalog(): Promise<CustomVehicle[]> {
+  return req('/catalog.php')
+}
+export async function apiAddCustomVehicle(adminPassword: string, make: string, model: string, version: string): Promise<CustomVehicle> {
+  return req('/catalog.php', { method: 'POST', body: JSON.stringify({ admin_password: adminPassword, make, model, version }) })
+}
+export async function apiDeleteCustomVehicle(adminPassword: string, id: number): Promise<void> {
+  await req('/catalog.php', { method: 'DELETE', body: JSON.stringify({ admin_password: adminPassword, id }) })
+}
+
 // Insurance
 export async function apiGetInsurance(): Promise<Insurance | null> {
   return req('/insurance.php')

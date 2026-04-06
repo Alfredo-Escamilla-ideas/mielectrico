@@ -9,7 +9,6 @@ import {
   apiDeleteCustomVersion, apiDeleteCustomModel, apiDeleteCustomMake,
 } from '../services/api'
 import type { CustomVehicle } from '../services/api'
-import { EV_CATALOG } from '../data/evCatalog'
 import CustomSelect from '../components/CustomSelect'
 import type { SelectOption } from '../components/CustomSelect'
 
@@ -179,22 +178,13 @@ function AdminPanel({ adminPwd, onLogout }: { adminPwd: string; onLogout: () => 
 
   const grouped = useMemo(() => groupVehicles(vehicles), [vehicles])
 
-  // Marcas disponibles en el selector (estáticas + custom)
-  const allMakes = useMemo(() => {
-    const set = new Set([
-      ...EV_CATALOG.map(m => m.make),
-      ...Object.keys(grouped),
-    ])
-    return [...set].sort()
-  }, [grouped])
+  // Marcas disponibles en el selector (todas desde la BD)
+  const allMakes = useMemo(() => Object.keys(grouped).sort(), [grouped])
 
   // Modelos disponibles para la marca seleccionada
   const makeKey = fMake === NEW_MAKE_SENTINEL ? '' : fMake
-  const staticModels = EV_CATALOG.find(m => m.make === makeKey)?.models.map(m => m.name) ?? []
-  const customModels = Object.keys(grouped[makeKey] ?? {})
   const allModels = useMemo(() => {
-    const set = new Set([...staticModels, ...customModels])
-    return [...set].sort()
+    return Object.keys(grouped[makeKey] ?? {}).sort()
   }, [fMake, grouped]) // eslint-disable-line
 
   const resolvedMake  = fMake  === NEW_MAKE_SENTINEL ? fNewMake.trim()  : fMake

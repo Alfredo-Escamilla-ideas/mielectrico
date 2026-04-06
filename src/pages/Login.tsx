@@ -1,19 +1,28 @@
 import { useState } from 'react'
-import { Car, Zap, Loader2, Eye, EyeOff } from 'lucide-react'
+import { Car, Zap, Loader2, Eye, EyeOff, ChevronDown } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import { EV_CATALOG } from '../data/evCatalog'
 
 export default function Login() {
   const { login, register } = useAuth()
   const [tab, setTab] = useState<'login' | 'register'>('login')
   const [plate, setPlate] = useState('')
   const [password, setPassword] = useState('')
-  const [model, setModel] = useState('Jaecoo 7 PHEV')
+  const [selectedMake, setSelectedMake] = useState('')
+  const [selectedModel, setSelectedModel] = useState('')
   const [initialOdometer, setInitialOdometer] = useState('')
   const [initialBattery, setInitialBattery] = useState('100')
   const [initialFuel, setInitialFuel] = useState('60')
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  const models = EV_CATALOG.find(m => m.make === selectedMake)?.models ?? []
+
+  const handleMakeChange = (make: string) => {
+    setSelectedMake(make)
+    setSelectedModel('')
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -22,15 +31,20 @@ export default function Login() {
       setError('Introduce matrícula y contraseña')
       return
     }
+    if (tab === 'register' && (!selectedMake || !selectedModel)) {
+      setError('Selecciona la marca y el modelo del vehículo')
+      return
+    }
     setLoading(true)
     try {
       if (tab === 'login') {
         await login(plate, password)
       } else {
+        const vehicleModel = `${selectedMake} ${selectedModel}`
         await register(
           plate,
           password,
-          model,
+          vehicleModel,
           parseInt(initialOdometer || '0', 10),
           parseInt(initialBattery || '100', 10),
           parseFloat(initialFuel || '60'),
@@ -47,6 +61,8 @@ export default function Login() {
     focus:outline-none focus:border-jaecoo-electric focus:ring-2 focus:ring-jaecoo-electric/20
     transition-all placeholder:text-jaecoo-muted`
 
+  const sel = `${inp} appearance-none pr-10 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed`
+
   return (
     <div className="min-h-screen bg-jaecoo-base flex items-center justify-center p-4">
       {/* Subtle radial glow */}
@@ -62,7 +78,7 @@ export default function Login() {
           </div>
           <h1 className="text-2xl font-bold text-jaecoo-primary">Control Consumo</h1>
           <p className="text-jaecoo-electric/80 text-sm mt-1 flex items-center justify-center gap-1">
-            <Zap size={13} /> PHEV · Híbrido enchufable
+            <Zap size={13} /> EV · PHEV · Híbrido enchufable
           </p>
         </div>
 
@@ -126,17 +142,47 @@ export default function Login() {
             {/* Register-only fields */}
             {tab === 'register' && (
               <>
+                {/* Make selector */}
                 <div>
                   <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
-                    Modelo del vehículo
+                    Marca
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Jaecoo 7 PHEV"
-                    value={model}
-                    onChange={e => setModel(e.target.value)}
-                    className={inp}
-                  />
+                  <div className="relative">
+                    <select
+                      value={selectedMake}
+                      onChange={e => handleMakeChange(e.target.value)}
+                      className={sel}
+                    >
+                      <option value="">Selecciona marca…</option>
+                      {EV_CATALOG.map(m => (
+                        <option key={m.make} value={m.make}>{m.make}</option>
+                      ))}
+                    </select>
+                    <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-3.5 text-jaecoo-muted" />
+                  </div>
+                </div>
+
+                {/* Model selector */}
+                <div>
+                  <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
+                    Modelo
+                  </label>
+                  <div className="relative">
+                    <select
+                      value={selectedModel}
+                      onChange={e => setSelectedModel(e.target.value)}
+                      disabled={!selectedMake}
+                      className={sel}
+                    >
+                      <option value="">
+                        {selectedMake ? 'Selecciona modelo…' : 'Primero selecciona marca'}
+                      </option>
+                      {models.map(m => (
+                        <option key={m} value={m}>{m}</option>
+                      ))}
+                    </select>
+                    <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-3.5 text-jaecoo-muted" />
+                  </div>
                 </div>
 
                 <div className="bg-jaecoo-elevated rounded-xl border border-jaecoo-border p-4 space-y-3">
@@ -183,7 +229,7 @@ export default function Login() {
                       <input
                         type="number"
                         min="0"
-                        max="60"
+                        max="200"
                         step="0.5"
                         placeholder="43"
                         value={initialFuel}

@@ -1,6 +1,6 @@
 import type { ElectricCharge, FuelRefuel, Tire, Insurance, Repair, MaintenanceService } from '../types'
 
-const BASE = '/jaecoo7/api'
+const BASE = '/mielectrico/api'
 
 function getToken() {
   return localStorage.getItem('consumo_token') ?? ''
@@ -38,10 +38,10 @@ export interface VehicleInfo {
   token: string
   plate: string
   vehicle_model: string
-  initial_odometer: number
-  initial_battery_pct: number
-  initial_fuel_liters: number
-  created_at: string
+  initial_odometer?: number
+  initial_battery_pct?: number
+  initial_fuel_liters?: number
+  created_at?: string
 }
 
 export async function apiRegister(

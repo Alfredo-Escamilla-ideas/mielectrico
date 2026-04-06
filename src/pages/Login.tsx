@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { Car, Zap, Loader2, Eye, EyeOff } from 'lucide-react'
+import { Zap, Loader2, Eye, EyeOff, ChevronRight } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { apiGetCustomCatalog } from '../services/api'
 import type { CustomVehicle } from '../services/api'
@@ -23,14 +23,12 @@ export default function Login() {
   const [error, setError] = useState('')
   const [allVehicles, setAllVehicles] = useState<CustomVehicle[]>([])
 
-  // Cargar catálogo completo desde la BD cuando abre el tab de registro
   useEffect(() => {
     if (tab === 'register') {
       apiGetCustomCatalog().then(setAllVehicles).catch(() => {})
     }
   }, [tab])
 
-  // Construir catálogo agrupado desde la BD
   const catalog = useMemo(() => {
     const map: Record<string, Record<string, string[]>> = {}
     for (const cv of allVehicles) {
@@ -50,10 +48,10 @@ export default function Login() {
       }))
   }, [allVehicles])
 
-  const makeEntry   = catalog.find(m => m.make === selectedMake)
+  const makeEntry    = catalog.find(m => m.make === selectedMake)
   const modelEntries = makeEntry?.models ?? []
-  const modelEntry  = modelEntries.find(m => m.name === selectedModel)
-  const versions    = modelEntry?.versions ?? []
+  const modelEntry   = modelEntries.find(m => m.name === selectedModel)
+  const versions     = modelEntry?.versions ?? []
 
   const handleMakeChange = (make: string) => {
     setSelectedMake(make)
@@ -105,51 +103,78 @@ export default function Login() {
     }
   }
 
-  const inp = `w-full rounded-xl border border-jaecoo-border bg-jaecoo-elevated px-4 py-3 text-sm text-jaecoo-primary
+  const inp = `w-full rounded-lg border border-jaecoo-border bg-jaecoo-base/60 px-4 py-3 text-sm text-jaecoo-primary
     focus:outline-none focus:border-jaecoo-electric focus:ring-2 focus:ring-jaecoo-electric/20
     transition-all placeholder:text-jaecoo-muted`
 
   return (
-    <div className="min-h-screen bg-jaecoo-base flex items-center justify-center p-4">
-      {/* Subtle radial glow */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-jaecoo-electric/5 blur-3xl" />
+    <div className="min-h-screen bg-jaecoo-base flex items-center justify-center p-4 relative overflow-hidden">
+
+      {/* Background: diagonal grid */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(34,211,238,0.05)" strokeWidth="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+
+      {/* Background: glow orbs */}
+      <div className="absolute pointer-events-none">
+        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-jaecoo-electric/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full bg-jaecoo-electric/5 blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-72 h-72 rounded-full bg-jaecoo-fuel/8 blur-3xl" />
       </div>
 
-      <div className="relative w-full max-w-sm">
-        {/* Logo */}
+      <div className="relative w-full max-w-sm animate-fade-in">
+
+        {/* Header branding */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-jaecoo-electric rounded-2xl mb-4 shadow-j-electric">
-            <Car size={32} className="text-jaecoo-base" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl mb-5 relative">
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-3xl bg-jaecoo-electric/20 blur-md animate-pulse-glow" />
+            <div className="relative w-full h-full bg-gradient-to-br from-jaecoo-electric/30 to-jaecoo-electric/10 border border-jaecoo-electric/40 rounded-3xl flex items-center justify-center shadow-j-electric">
+              <Zap size={34} className="text-jaecoo-electric fill-jaecoo-electric/30" />
+            </div>
           </div>
-          <h1 className="text-2xl font-bold text-jaecoo-primary">Control Consumo</h1>
-          <p className="text-jaecoo-electric/80 text-sm mt-1 flex items-center justify-center gap-1">
-            <Zap size={13} /> EV · PHEV · Híbrido enchufable
+
+          <h1 className="text-3xl font-bold text-jaecoo-primary tracking-tight">Mi Eléctrico</h1>
+          <p className="text-jaecoo-muted text-sm mt-1.5">
+            Seguimiento de consumo · EV · PHEV · Híbrido
           </p>
         </div>
 
         {/* Card */}
-        <div className="bg-jaecoo-card border border-jaecoo-border-strong rounded-2xl shadow-j-elevated overflow-hidden">
+        <div className="bg-jaecoo-card/80 backdrop-blur-sm border border-jaecoo-border-strong rounded-2xl shadow-j-elevated overflow-hidden">
+
           {/* Tabs */}
-          <div className="flex border-b border-jaecoo-border">
+          <div className="flex bg-jaecoo-base/40 border-b border-jaecoo-border">
             {(['login', 'register'] as const).map(t => (
               <button
                 key={t}
                 onClick={() => { setTab(t); setError('') }}
-                className={`flex-1 py-3.5 text-sm font-semibold transition-colors
+                className={`flex-1 py-4 text-sm font-semibold transition-all relative
                   ${tab === t
-                    ? 'text-jaecoo-electric border-b-2 border-jaecoo-electric'
+                    ? 'text-jaecoo-electric'
                     : 'text-jaecoo-muted hover:text-jaecoo-secondary'}`}
               >
-                {t === 'login' ? 'Entrar' : 'Registrarse'}
+                {t === 'login' ? 'Iniciar sesión' : 'Registrarse'}
+                {tab === t && (
+                  <span className="absolute bottom-0 left-1/4 right-1/4 h-0.5 bg-jaecoo-electric rounded-full" />
+                )}
               </button>
             ))}
           </div>
 
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
+
             {/* Plate */}
-            <div>
-              <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wider">
                 Matrícula
               </label>
               <input
@@ -158,15 +183,15 @@ export default function Login() {
                 value={plate}
                 onChange={e => setPlate(e.target.value.toUpperCase().replace(/\s/g, ''))}
                 maxLength={10}
-                className={`${inp} font-mono font-bold tracking-widest uppercase`}
+                className={`${inp} font-mono font-bold tracking-widest uppercase text-base`}
                 autoComplete="username"
                 autoFocus
               />
             </div>
 
             {/* Password */}
-            <div>
-              <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wider">
                 Contraseña
               </label>
               <div className="relative">
@@ -178,8 +203,11 @@ export default function Login() {
                   className={`${inp} pr-11`}
                   autoComplete={tab === 'login' ? 'current-password' : 'new-password'}
                 />
-                <button type="button" onClick={() => setShowPass(v => !v)}
-                  className="absolute right-3.5 top-3.5 text-jaecoo-muted hover:text-jaecoo-secondary transition-colors">
+                <button
+                  type="button"
+                  onClick={() => setShowPass(v => !v)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-jaecoo-muted hover:text-jaecoo-secondary transition-colors p-0.5"
+                >
                   {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
@@ -187,66 +215,64 @@ export default function Login() {
 
             {/* Register-only fields */}
             {tab === 'register' && (
-              <>
-                {/* Make */}
-                <div>
-                  <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
-                    Marca
-                  </label>
-                  <CustomSelect
-                    value={selectedMake}
-                    onChange={handleMakeChange}
-                    options={catalog.map(m => m.make)}
-                    placeholder="Selecciona marca…"
-                  />
-                </div>
+              <div className="space-y-4 pt-1">
 
-                {/* Model */}
-                <div>
-                  <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
-                    Modelo
-                  </label>
-                  <CustomSelect
-                    value={selectedModel}
-                    onChange={handleModelChange}
-                    options={modelEntries.map(m => m.name)}
-                    placeholder={selectedMake ? 'Selecciona modelo…' : 'Primero selecciona marca'}
-                    disabled={!selectedMake}
-                  />
-                </div>
+                {/* Vehicle selector group */}
+                <div className="rounded-xl border border-jaecoo-border bg-jaecoo-elevated/60 p-4 space-y-3">
+                  <p className="text-xs font-semibold text-jaecoo-electric uppercase tracking-wider flex items-center gap-1.5">
+                    <Zap size={11} className="fill-jaecoo-electric/40" />
+                    Tu vehículo
+                  </p>
 
-                {/* Version */}
-                {selectedModel && versions.length > 0 && (
-                  <div>
-                    <label className="block text-xs font-semibold text-jaecoo-muted uppercase tracking-wide mb-1.5">
-                      Versión
-                    </label>
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-medium text-jaecoo-muted">Marca</label>
                     <CustomSelect
-                      value={selectedVersion}
-                      onChange={setSelectedVersion}
-                      options={versions}
-                      placeholder="Selecciona versión…"
+                      value={selectedMake}
+                      onChange={handleMakeChange}
+                      options={catalog.map(m => m.make)}
+                      placeholder="Selecciona marca…"
                     />
                   </div>
-                )}
 
-                {/* Initial state */}
-                <div className="bg-jaecoo-elevated rounded-xl border border-jaecoo-border p-4 space-y-3">
-                  <p className="text-xs font-semibold text-jaecoo-muted uppercase tracking-wide">
-                    Estado inicial del vehículo
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-medium text-jaecoo-muted">Modelo</label>
+                    <CustomSelect
+                      value={selectedModel}
+                      onChange={handleModelChange}
+                      options={modelEntries.map(m => m.name)}
+                      placeholder={selectedMake ? 'Selecciona modelo…' : 'Primero selecciona marca'}
+                      disabled={!selectedMake}
+                    />
+                  </div>
+
+                  {selectedModel && versions.length > 0 && (
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-medium text-jaecoo-muted">Versión</label>
+                      <CustomSelect
+                        value={selectedVersion}
+                        onChange={setSelectedVersion}
+                        options={versions}
+                        placeholder="Selecciona versión…"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* Initial state group */}
+                <div className="rounded-xl border border-jaecoo-border bg-jaecoo-elevated/60 p-4 space-y-3">
+                  <p className="text-xs font-semibold text-jaecoo-muted uppercase tracking-wider">
+                    Estado inicial
                   </p>
-                  <p className="text-xs text-jaecoo-muted -mt-1">
-                    Se recomienda registrar con batería al 100% y depósito lleno para mayor precisión.
+                  <p className="text-xs text-jaecoo-muted/70">
+                    Para mayor precisión, regístrate con batería al 100% y depósito lleno.
                   </p>
 
-                  <div>
-                    <label className="block text-xs font-medium text-jaecoo-muted mb-1">
-                      Kilómetros totales actuales
-                    </label>
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-medium text-jaecoo-muted">Kilómetros actuales</label>
                     <input
                       type="number"
                       min="0"
-                      placeholder="e.g. 12500"
+                      placeholder="Ej. 12500"
                       value={initialOdometer}
                       onChange={e => setInitialOdometer(e.target.value)}
                       className={inp}
@@ -254,10 +280,8 @@ export default function Login() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-medium text-jaecoo-muted mb-1">
-                        Batería actual (%)
-                      </label>
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-medium text-jaecoo-muted">Batería (%)</label>
                       <input
                         type="number"
                         min="0"
@@ -268,10 +292,8 @@ export default function Login() {
                         className={inp}
                       />
                     </div>
-                    <div>
-                      <label className="block text-xs font-medium text-jaecoo-muted mb-1">
-                        Combustible (litros)
-                      </label>
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-medium text-jaecoo-muted">Combustible (L)</label>
                       <input
                         type="number"
                         min="0"
@@ -285,12 +307,13 @@ export default function Login() {
                     </div>
                   </div>
                 </div>
-              </>
+              </div>
             )}
 
             {/* Error */}
             {error && (
-              <div className="bg-jaecoo-danger/10 border border-jaecoo-danger/30 rounded-xl px-4 py-3 text-sm text-jaecoo-danger">
+              <div className="bg-jaecoo-danger/10 border border-jaecoo-danger/30 rounded-lg px-4 py-3 text-sm text-jaecoo-danger flex items-start gap-2">
+                <span className="mt-0.5 shrink-0">⚠</span>
                 {error}
               </div>
             )}
@@ -299,19 +322,29 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-jaecoo-electric hover:brightness-110 disabled:opacity-50 text-jaecoo-base font-bold rounded-xl py-3 text-sm transition-all flex items-center justify-center gap-2 mt-2"
+              className="w-full bg-jaecoo-electric hover:brightness-110 active:scale-[0.98] disabled:opacity-50
+                text-jaecoo-base font-bold rounded-xl py-3.5 text-sm transition-all
+                flex items-center justify-center gap-2 mt-2 shadow-j-electric"
             >
-              {loading && <Loader2 size={16} className="animate-spin" />}
+              {loading
+                ? <Loader2 size={16} className="animate-spin" />
+                : <ChevronRight size={16} />
+              }
               {tab === 'login' ? 'Entrar' : 'Crear cuenta'}
             </button>
 
             {tab === 'register' && (
-              <p className="text-xs text-jaecoo-muted text-center">
-                La matrícula es tu identificador único. Cada vehículo tiene sus datos aislados.
+              <p className="text-xs text-jaecoo-muted/70 text-center pt-1">
+                La matrícula es tu identificador único — cada vehículo tiene sus datos aislados.
               </p>
             )}
           </form>
         </div>
+
+        {/* Footer */}
+        <p className="text-center text-xs text-jaecoo-muted/50 mt-6">
+          Mi Eléctrico · Seguimiento de vehículos electrificados
+        </p>
       </div>
     </div>
   )

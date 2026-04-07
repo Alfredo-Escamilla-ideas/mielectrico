@@ -122,8 +122,9 @@ export default function Login() {
         <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
 
-      {/* ── LEFT PANEL — branding, siempre igual ──────────────────────────── */}
-      <div className="hidden md:flex w-1/2 lg:w-3/5 flex-col justify-between p-10 lg:p-16 relative">
+      {/* ── LEFT PANEL — contenido fijo, ancho variable según tab ─────────── */}
+      <div className={`hidden md:flex flex-col justify-between p-10 lg:p-12 relative shrink-0 transition-[width] duration-300
+        ${isRegister ? 'w-[35%]' : 'w-1/2 lg:w-3/5'}`}>
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/3 -left-20 w-[500px] h-[500px] rounded-full bg-jaecoo-electric/8 blur-3xl" />
           <div className="absolute bottom-10 left-1/3 w-72 h-72 rounded-full bg-jaecoo-fuel/6 blur-3xl" />
@@ -170,15 +171,15 @@ export default function Login() {
         </p>
       </div>
 
-      {/* ── RIGHT PANEL — formulario ───────────────────────────────────────── */}
-      <div className="w-full md:w-1/2 lg:w-2/5 flex flex-col items-center justify-center p-6 md:p-10 relative">
+      {/* ── RIGHT PANEL — crece en registro ───────────────────────────────── */}
+      <div className="w-full md:flex-1 flex flex-col items-center justify-center p-6 md:p-10 relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 rounded-full bg-jaecoo-electric/5 blur-3xl" />
         </div>
 
         <div className="hidden md:block absolute left-0 top-16 bottom-16 w-px bg-gradient-to-b from-transparent via-jaecoo-border to-transparent" />
 
-        <div className="relative w-full max-w-sm animate-fade-in">
+        <div className={`relative w-full animate-fade-in ${isRegister ? 'md:max-w-2xl' : 'max-w-sm'}`}>
 
           {/* Branding móvil */}
           <div className="text-center mb-8 md:hidden">

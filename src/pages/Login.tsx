@@ -122,9 +122,8 @@ export default function Login() {
         <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
 
-      {/* ── LEFT PANEL — branding, más estrecho en registro ─────────────── */}
-      <div className={`hidden md:flex flex-col justify-between relative transition-all duration-300
-        ${isRegister ? 'w-[30%] p-8 lg:p-10' : 'w-1/2 lg:w-3/5 p-10 lg:p-16'}`}>
+      {/* ── LEFT PANEL — branding, siempre igual ──────────────────────────── */}
+      <div className="hidden md:flex w-1/2 lg:w-3/5 flex-col justify-between p-10 lg:p-16 relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/3 -left-20 w-[500px] h-[500px] rounded-full bg-jaecoo-electric/8 blur-3xl" />
           <div className="absolute bottom-10 left-1/3 w-72 h-72 rounded-full bg-jaecoo-fuel/6 blur-3xl" />
@@ -140,29 +139,25 @@ export default function Login() {
           <span className="text-lg font-bold text-jaecoo-primary tracking-tight">Mi Eléctrico</span>
         </div>
 
-        <div className="relative space-y-6">
-          <div className="space-y-3">
-            <h2 className={`font-bold text-jaecoo-primary leading-tight tracking-tight transition-all
-              ${isRegister ? 'text-2xl lg:text-3xl' : 'text-4xl lg:text-5xl'}`}>
+        <div className="relative space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-jaecoo-primary leading-tight tracking-tight">
               Controla el consumo<br />
               <span className="text-jaecoo-electric">de tu vehículo</span>
             </h2>
-            {!isRegister && (
-              <p className="text-jaecoo-secondary text-lg max-w-md leading-relaxed">
-                Registra cargas, repostajes y kilómetros. Analiza tu consumo real con datos precisos
-                adaptados a vehículos EV, PHEV e híbridos enchufables.
-              </p>
-            )}
+            <p className="text-jaecoo-secondary text-lg max-w-md leading-relaxed">
+              Registra cargas, repostajes y kilómetros. Analiza tu consumo real con datos precisos
+              adaptados a vehículos EV, PHEV e híbridos enchufables.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {[
               { icon: '⚡', label: 'Carga eléctrica' },
-              { icon: '⛽', label: 'Repostaje' },
-              { icon: '📊', label: 'Estadísticas' },
-              { icon: '🚗', label: 'Multivehículo' },
+              { icon: '⛽', label: 'Repostaje combustible' },
+              { icon: '📊', label: 'Estadísticas de consumo' },
+              { icon: '🚗', label: 'Múltiples vehículos' },
             ].map(f => (
-              <div key={f.label} className={`flex items-center gap-1.5 bg-jaecoo-elevated border border-jaecoo-border rounded-full text-jaecoo-secondary
-                ${isRegister ? 'px-2.5 py-1 text-xs' : 'px-4 py-2 text-sm'}`}>
+              <div key={f.label} className="flex items-center gap-2 bg-jaecoo-elevated border border-jaecoo-border rounded-full px-4 py-2 text-sm text-jaecoo-secondary">
                 <span>{f.icon}</span>
                 {f.label}
               </div>
@@ -176,19 +171,14 @@ export default function Login() {
       </div>
 
       {/* ── RIGHT PANEL — formulario ───────────────────────────────────────── */}
-      <div className={`w-full flex flex-col items-center justify-center p-6 md:p-10 relative
-        ${isRegister ? 'md:flex-1' : 'md:w-1/2 lg:w-2/5'}`}>
+      <div className="w-full md:w-1/2 lg:w-2/5 flex flex-col items-center justify-center p-6 md:p-10 relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 rounded-full bg-jaecoo-electric/5 blur-3xl" />
         </div>
 
-        {/* Separador vertical — solo en login desktop */}
-        {!isRegister && (
-          <div className="hidden md:block absolute left-0 top-16 bottom-16 w-px bg-gradient-to-b from-transparent via-jaecoo-border to-transparent" />
-        )}
+        <div className="hidden md:block absolute left-0 top-16 bottom-16 w-px bg-gradient-to-b from-transparent via-jaecoo-border to-transparent" />
 
-        {/* Contenedor del formulario — se expande en registro */}
-        <div className={`relative w-full animate-fade-in ${isRegister ? 'md:max-w-3xl' : 'max-w-sm'}`}>
+        <div className="relative w-full max-w-sm animate-fade-in">
 
           {/* Branding móvil */}
           <div className="text-center mb-8 md:hidden">

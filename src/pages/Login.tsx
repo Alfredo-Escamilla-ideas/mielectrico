@@ -122,9 +122,8 @@ export default function Login() {
         <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
 
-      {/* ── LEFT PANEL — contenido fijo, ancho variable según tab ─────────── */}
-      <div className={`hidden md:flex flex-col justify-between p-10 lg:p-12 relative shrink-0 transition-[width] duration-300
-        ${isRegister ? 'w-[35%]' : 'w-1/2 lg:w-3/5'}`}>
+      {/* ── LEFT PANEL — tamaño fijo siempre ─────────────────────────────── */}
+      <div className="hidden md:flex w-[38%] shrink-0 flex-col justify-between p-10 lg:p-12 relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/3 -left-20 w-[500px] h-[500px] rounded-full bg-jaecoo-electric/8 blur-3xl" />
           <div className="absolute bottom-10 left-1/3 w-72 h-72 rounded-full bg-jaecoo-fuel/6 blur-3xl" />
